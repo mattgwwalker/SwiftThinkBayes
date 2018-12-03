@@ -51,5 +51,8 @@ class SwiftThinkBayesTests: XCTestCase {
         XCTAssert(abs(before - (0.5*0.75 + 0.5*0.5)) < epsilon)
         XCTAssert(abs(pmf.total() - 1) < epsilon, "Total after normalization should be 1.0")
 
+        // Posterior
+        let posterior = pmf.prob(key: "Bowl 1")
+        XCTAssert(abs(posterior - 0.6) < epsilon)
     }
 }

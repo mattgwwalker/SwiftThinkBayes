@@ -19,6 +19,16 @@ class DictWrapper<T: Hashable> {
     }
     
     /**
+     Gets the probability associated with the given key.  If the key isn't found, the value `defaultValue` is returned.
+     */
+    func prob(key: T, defaultValue: Double = 0) -> Double {
+        guard let value = dict[key] else {
+            return defaultValue
+        }
+        return value
+    }
+    
+    /**
      Scales the freq/prob associated with the given key.
      */
     func mult(key: T, factor: Double) {
