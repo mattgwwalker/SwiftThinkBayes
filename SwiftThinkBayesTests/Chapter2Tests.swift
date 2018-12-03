@@ -9,7 +9,7 @@
 import XCTest
 @testable import SwiftThinkBayes
 
-class SwiftThinkBayesTests: XCTestCase {
+class Chapter2Tests: XCTestCase {
     let epsilon = 10e-7
     
     func testSection2_2() throws {

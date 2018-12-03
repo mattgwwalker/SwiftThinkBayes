@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3432444321B5147D00D3B99C /* SwiftThinkBayes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */; };
-		3432444821B5147D00D3B99C /* SwiftThinkBayesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432444721B5147D00D3B99C /* SwiftThinkBayesTests.swift */; };
+		3432444821B5147D00D3B99C /* Chapter2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432444721B5147D00D3B99C /* Chapter2Tests.swift */; };
 		3432445421B5161600D3B99C /* Pmf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432445321B5161600D3B99C /* Pmf.swift */; };
+		344473DC21B5CDEC0095FA6B /* DictWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */; };
+		344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DD21B5CE180095FA6B /* DictWrapper.swift */; };
+		344473E021B5CF000095FA6B /* PmfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DF21B5CF000095FA6B /* PmfTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +29,12 @@
 		3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftThinkBayes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3432443D21B5147C00D3B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3432444221B5147D00D3B99C /* SwiftThinkBayesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftThinkBayesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3432444721B5147D00D3B99C /* SwiftThinkBayesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftThinkBayesTests.swift; sourceTree = "<group>"; };
+		3432444721B5147D00D3B99C /* Chapter2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter2Tests.swift; sourceTree = "<group>"; };
 		3432444921B5147D00D3B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3432445321B5161600D3B99C /* Pmf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pmf.swift; sourceTree = "<group>"; };
+		344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictWrapperTests.swift; sourceTree = "<group>"; };
+		344473DD21B5CE180095FA6B /* DictWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictWrapper.swift; sourceTree = "<group>"; };
+		344473DF21B5CF000095FA6B /* PmfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PmfTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,7 @@
 			children = (
 				3432443D21B5147C00D3B99C /* Info.plist */,
 				3432445321B5161600D3B99C /* Pmf.swift */,
+				344473DD21B5CE180095FA6B /* DictWrapper.swift */,
 			);
 			path = SwiftThinkBayes;
 			sourceTree = "<group>";
@@ -80,7 +87,9 @@
 		3432444621B5147D00D3B99C /* SwiftThinkBayesTests */ = {
 			isa = PBXGroup;
 			children = (
-				3432444721B5147D00D3B99C /* SwiftThinkBayesTests.swift */,
+				3432444721B5147D00D3B99C /* Chapter2Tests.swift */,
+				344473DF21B5CF000095FA6B /* PmfTests.swift */,
+				344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */,
 				3432444921B5147D00D3B99C /* Info.plist */,
 			);
 			path = SwiftThinkBayesTests;
@@ -195,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3432445421B5161600D3B99C /* Pmf.swift in Sources */,
+				344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +212,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3432444821B5147D00D3B99C /* SwiftThinkBayesTests.swift in Sources */,
+				3432444821B5147D00D3B99C /* Chapter2Tests.swift in Sources */,
+				344473DC21B5CDEC0095FA6B /* DictWrapperTests.swift in Sources */,
+				344473E021B5CF000095FA6B /* PmfTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
