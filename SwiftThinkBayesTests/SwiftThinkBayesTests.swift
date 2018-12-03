@@ -15,13 +15,26 @@ class SwiftThinkBayesTests: XCTestCase {
     func testSection2_2() {
         let pmf = Pmf<String>()
         
-        pmf.set(id: "Bowl 1", value: 0.5)
-        let result = pmf.dict["Bowl 1"]
-        guard result != nil else {
+        pmf.set(key: "Bowl 1", value: 0.5)
+        guard let result1 = pmf.dict["Bowl 1"] else {
             XCTFail()
             return
         }
+        XCTAssert(abs(result1 - 0.5) < epsilson )
         
-        XCTAssert(abs(result! - 0.5) < epsilson )
+        pmf.set(key: "Bowl 2", value: 0.5)
+        guard let result2 = pmf.dict["Bowl 2"] else {
+            XCTFail()
+            return
+        }
+        XCTAssert(abs(result2 - 0.5) < epsilson )
+        
+        pmf.mult(key: "Bowl 1", factor: 0.75)
+        guard let result3 = pmf.dict["Bowl 1"] else {
+            XCTFail()
+            return
+        }
+        XCTAssert(abs(result3 - 0.5*0.75) < epsilson )
+
     }
 }

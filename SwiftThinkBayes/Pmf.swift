@@ -11,8 +11,22 @@ import Foundation
 class DictWrapper<T: Hashable> {
     var dict: [T: Double] = [T:Double]()
     
-    func set(id: T, value: Double) {
-        dict[id] = value
+    /**
+     Sets the freq/prob associated with the given key.
+    */
+    func set(key: T, value: Double) {
+        dict[key] = value
+    }
+    
+    /**
+     Scales the freq/prob associated with the given key.
+     */
+    func mult(key: T, factor: Double) {
+        guard let value = dict[key] else {
+            return
+        }
+        
+        dict[key] = value * factor
     }
 
 }
