@@ -13,6 +13,7 @@
 		344473DC21B5CDEC0095FA6B /* DictWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */; };
 		344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DD21B5CE180095FA6B /* DictWrapper.swift */; };
 		344473E021B5CF000095FA6B /* PmfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DF21B5CF000095FA6B /* PmfTests.swift */; };
+		34AECE2221B67678007D42E4 /* Suite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AECE2121B67678007D42E4 /* Suite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		344473DF21B5CF000095FA6B /* PmfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PmfTests.swift; sourceTree = "<group>"; };
 		34AECE1F21B661CE007D42E4 /* thinkbayes.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes.py; sourceTree = "<group>"; };
 		34AECE2021B661DE007D42E4 /* thinkbayes2.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes2.py; sourceTree = "<group>"; };
+		34AECE2121B67678007D42E4 /* Suite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +83,9 @@
 			isa = PBXGroup;
 			children = (
 				3432443D21B5147C00D3B99C /* Info.plist */,
-				3432445321B5161600D3B99C /* Pmf.swift */,
 				344473DD21B5CE180095FA6B /* DictWrapper.swift */,
+				3432445321B5161600D3B99C /* Pmf.swift */,
+				34AECE2121B67678007D42E4 /* Suite.swift */,
 			);
 			path = SwiftThinkBayes;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34AECE2221B67678007D42E4 /* Suite.swift in Sources */,
 				3432445421B5161600D3B99C /* Pmf.swift in Sources */,
 				344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */,
 			);

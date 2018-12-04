@@ -11,6 +11,16 @@ import Foundation
 class DictWrapper<T: Hashable> {
     var dict: [T: Double] = [T:Double]()
     
+    init() {
+        // Do nothing
+    }
+    
+    init(sequence: [T]) {
+        for hypo in sequence {
+            set(key:hypo, value: 1)
+        }
+    }
+    
     /**
      Sets the freq/prob associated with the given key.
      */

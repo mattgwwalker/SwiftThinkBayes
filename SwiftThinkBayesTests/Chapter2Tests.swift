@@ -153,4 +153,26 @@ class Chapter2Tests: XCTestCase {
         XCTAssert(abs(pmf.prob("C") - 0.6666667) < epsilon)
     }
 
+    // Tests Monty Hall problem implemented with the class Suite
+    func testMonty2() throws {
+        class Monty: Suite<Character> {
+            override func likelihood(data: Character, hypo: Character) -> Double {
+                if hypo == data {
+                    return 0
+                } else if hypo == "A" {
+                    return 0.5
+                } else {
+                    return 1
+                }
+            }
+        }
+        
+        let suite = Monty(sequence: Array("ABC"))
+        try suite.update(data: "B")
+        suite.printMe()
+        
+        XCTAssert(abs(suite.prob("A") - 0.3333333) < epsilon)
+        XCTAssert(abs(suite.prob("B") - 0.0) < epsilon)
+        XCTAssert(abs(suite.prob("C") - 0.6666667) < epsilon)
+    }
 }
