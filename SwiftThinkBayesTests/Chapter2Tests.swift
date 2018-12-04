@@ -11,8 +11,9 @@ import XCTest
 
 class Chapter2Tests: XCTestCase {
     let epsilon = 10e-7
-    
-    func testSection2_2() throws {
+
+    // Tests based on code in Section 2.2 of Think Bayes
+    func testCookie() throws {
         let pmf = Pmf<String>()
         
         pmf.set(key: "Bowl 1", value: 0.5)
@@ -52,7 +53,59 @@ class Chapter2Tests: XCTestCase {
         XCTAssert(abs(pmf.total() - 1) < epsilon, "Total after normalization should be 1.0")
 
         // Posterior
-        let posterior = pmf.prob(key: "Bowl 1")
+        let posterior = pmf.prob("Bowl 1")
         XCTAssert(abs(posterior - 0.6) < epsilon)
     }
+    
+    // Tests based on section 2.3 of Think Bayes
+    func testCookie2() throws {
+        class Cookie: Pmf<String> {
+            init(_ hypos: [String]) throws {
+                super.init()
+                
+                for hypo in hypos {
+                    set(key: hypo, value: 1)
+                }
+                
+                try normalize()
+            }
+            
+            func update(_ data: String) throws {
+                for hypo in keys() {
+                    let like = likelihood(data: data, hypo: hypo)
+                    mult(key: hypo, factor: like)
+                }
+                try normalize()
+            }
+            
+            let mixes: [String:[String:Double]] =
+                ["Bowl 1":["vanilla":0.75, "chocolate":0.25],
+                 "Bowl 2":["vanilla":0.5,  "chocolate":0.5]]
+
+            func likelihood(data: String, hypo: String) -> Double {
+                // Note that the original ThinkBayes does not handle the cases
+                // of hypo and data not being found in the dictionaries.
+                // We've assumed that returning zero is reasonable.
+                guard let mix = mixes[hypo] else {
+                    return 0
+                }
+                guard let like = mix[data] else {
+                    return 0
+                }
+                return like
+            }
+        }
+        
+        let hypos = ["Bowl 1", "Bowl 2"]
+        let pmf = try Cookie(hypos)
+        try pmf.update("vanilla")
+        
+        for (hypo, prob) in pmf.dict {
+            print("\(hypo): \(prob)")
+        }
+        
+        XCTAssert(abs(pmf.prob("Bowl 1") - 0.6) < epsilon)
+        XCTAssert(abs(pmf.prob("Bowl 2") - 0.4) < epsilon)
+    }
+
 }

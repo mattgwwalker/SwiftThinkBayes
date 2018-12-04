@@ -35,6 +35,8 @@
 		344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictWrapperTests.swift; sourceTree = "<group>"; };
 		344473DD21B5CE180095FA6B /* DictWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictWrapper.swift; sourceTree = "<group>"; };
 		344473DF21B5CF000095FA6B /* PmfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PmfTests.swift; sourceTree = "<group>"; };
+		34AECE1F21B661CE007D42E4 /* thinkbayes.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes.py; sourceTree = "<group>"; };
+		34AECE2021B661DE007D42E4 /* thinkbayes2.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes2.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		3432442F21B5147C00D3B99C = {
 			isa = PBXGroup;
 			children = (
+				34AECE1E21B6612C007D42E4 /* ThinkBayes Code */,
 				3432443B21B5147C00D3B99C /* SwiftThinkBayes */,
 				3432444621B5147D00D3B99C /* SwiftThinkBayesTests */,
 				3432443A21B5147C00D3B99C /* Products */,
@@ -93,6 +96,15 @@
 				3432444921B5147D00D3B99C /* Info.plist */,
 			);
 			path = SwiftThinkBayesTests;
+			sourceTree = "<group>";
+		};
+		34AECE1E21B6612C007D42E4 /* ThinkBayes Code */ = {
+			isa = PBXGroup;
+			children = (
+				34AECE1F21B661CE007D42E4 /* thinkbayes.py */,
+				34AECE2021B661DE007D42E4 /* thinkbayes2.py */,
+			);
+			path = "ThinkBayes Code";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

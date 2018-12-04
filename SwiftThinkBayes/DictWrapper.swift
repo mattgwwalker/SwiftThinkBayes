@@ -21,7 +21,7 @@ class DictWrapper<T: Hashable> {
     /**
      Gets the probability associated with the given key.  If the key isn't found, the value `defaultValue` is returned.
      */
-    func prob(key: T, defaultValue: Double = 0) -> Double {
+    func prob(_ key: T, defaultValue: Double = 0) -> Double {
         guard let value = dict[key] else {
             return defaultValue
         }
@@ -53,5 +53,21 @@ class DictWrapper<T: Hashable> {
         return total
     }
     
+    /**
+     Returns the dict to allow iteration through the key value pairs.
+     
+     - ToDo: A better implementation would return an array of labelled tuples.
+    */
+    func items() -> [T:Double] {
+        return dict
+    }
+    
+    /**
+     Returns the keys of the dictionary.  Why-oh-why is this method called
+     "values" in the original ThinkBayes?
+    */
+    func keys() -> Dictionary<T, Double>.Keys {
+        return dict.keys
+    }
 }
 

@@ -23,6 +23,7 @@ class Pmf<T: Hashable>: DictWrapper<T> {
      
      - Throws: `Errors.TotalProbabilityZero` is thrown if, before normalization, the sum of all the probabilities is zero
      */
+    @discardableResult
     func normalize(fraction: Double = 1.0) throws -> Double {
         let sum = total()
         
