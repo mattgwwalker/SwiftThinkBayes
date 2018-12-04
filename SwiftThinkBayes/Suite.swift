@@ -44,9 +44,9 @@ class Suite<T: Hashable>: Pmf<T> {
     /**
      Prints the hypotheses and their probabilities
      */
-    func printMe() {
+    func print() {
         for (hypo, prob) in dict {
-            print("\(hypo): \(prob)")
+            Swift.print("\(hypo): \(prob)")
         }
     }
 }

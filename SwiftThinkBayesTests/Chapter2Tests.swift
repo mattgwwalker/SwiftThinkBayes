@@ -169,7 +169,7 @@ class Chapter2Tests: XCTestCase {
         
         let suite = Monty(sequence: Array("ABC"))
         try suite.update(data: "B")
-        suite.printMe()
+        suite.print()
         
         XCTAssert(abs(suite.prob("A") - 0.3333333) < epsilon)
         XCTAssert(abs(suite.prob("B") - 0.0) < epsilon)
