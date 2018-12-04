@@ -107,5 +107,50 @@ class Chapter2Tests: XCTestCase {
         XCTAssert(abs(pmf.prob("Bowl 1") - 0.6) < epsilon)
         XCTAssert(abs(pmf.prob("Bowl 2") - 0.4) < epsilon)
     }
+    
+    // Tests based on the Monty Hall problem (section 2.4 of Think Bayes)
+    func testMonty() throws {
+        class Monty: Pmf<Character> {
+            init(_ hypos: String) throws {
+                super.init()
+                
+                for hypo in hypos {
+                    set(key: hypo, value: 1)
+                }
+                
+                try normalize()
+            }
+            
+            func update(_ data: Character) throws {
+                for hypo in keys() {
+                    let like = likelihood(data: data, hypo: hypo)
+                    mult(key: hypo, factor: like)
+                }
+                try normalize()
+            }
+            
+            func likelihood(data: Character, hypo: Character) -> Double {
+                if hypo == data {
+                    return 0
+                } else if hypo == "A" {
+                    return 0.5
+                } else {
+                    return 1
+                }
+            }
+        }
+        
+        let hypos = "ABC"
+        let pmf = try Monty(hypos)
+        try pmf.update("B")
+        
+        for (hypo, prob) in pmf.dict {
+            print("\(hypo): \(prob)")
+        }
+        
+        XCTAssert(abs(pmf.prob("A") - 0.3333333) < epsilon)
+        XCTAssert(abs(pmf.prob("B") - 0.0) < epsilon)
+        XCTAssert(abs(pmf.prob("C") - 0.6666667) < epsilon)
+    }
 
 }
