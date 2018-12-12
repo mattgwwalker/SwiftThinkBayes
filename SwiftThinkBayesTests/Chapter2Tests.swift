@@ -155,7 +155,7 @@ class Chapter2Tests: XCTestCase {
 
     // Tests Monty Hall problem implemented with the class Suite
     func testMonty2() throws {
-        class Monty: Suite<Character> {
+        class Monty: Suite<Character, Character> {
             override func likelihood(data: Character, hypo: Character) -> Double {
                 if hypo == data {
                     return 0
@@ -176,38 +176,45 @@ class Chapter2Tests: XCTestCase {
         XCTAssert(abs(suite.prob("C") - 0.6666667) < epsilon)
     }
     
-    func testMAndM() {
-        let mix94 = ["Brown":30,
-                     "Yellow":20,
-                     "Red":20,
-                     "Green":10,
-                     "Orange":10,
-                     "Tan":10]
-        
-        let mix96 = ["Blue":24,
-                     "Green":20,
-                     "Orange":16,
-                     "Yellow":14,
-                     "Red":13,
-                     "Brown":13]
-        
-        let hypoA = ["Bag 1":mix94, "Bag 2":mix96]
-        let hypoB = ["Bag 1":mix96, "Bag 2":mix94]
-        
-        let hypotheses = ["A":hypoA, "B":hypoB]
-        
-        class M_and_M : Suite<Character> {
-            override func likelihood(data: Character, hypo: Character) throws -> Double {
+    func testMAndM() throws {
+        class M_and_M : Suite<(String,String),String> {
+            let hypotheses : [String : [String: [String:Int]]]
+            
+            init(hypos: [String]) {
+                let mix94 = ["Brown":30,
+                             "Yellow":20,
+                             "Red":20,
+                             "Green":10,
+                             "Orange":10,
+                             "Tan":10]
+                
+                let mix96 = ["Blue":24,
+                             "Green":20,
+                             "Orange":16,
+                             "Yellow":14,
+                             "Red":13,
+                             "Brown":13]
+                
+                let hypoA = ["Bag 1":mix94, "Bag 2":mix96]
+                let hypoB = ["Bag 1":mix96, "Bag 2":mix94]
+                
+                self.hypotheses = ["A":hypoA, "B":hypoB]
+                
+                super.init(sequence: hypos)
+            }
+            
+            override func likelihood(data: (String,String), hypo: String) throws -> Double {
                 let (bag, color) = data
-                let mix = hypotheses[hypo][bag]
-                let like = mix[color]
+                let hypothesis = hypotheses[hypo]!
+                let mix = hypothesis[bag]!
+                let like = Double(mix[color]!)
                 return like
             }
         }
         
-        let suite = M_and_M("AB")
-        suite.update(("Bag 1", "Yellow"))
-        suite.update(("Bag 2", "Green"))
+        let suite = M_and_M(hypos: ["A", "B"])
+        try suite.update(data: ("Bag 1", "Yellow"))
+        try suite.update(data: ("Bag 2", "Green"))
         
         suite.print()
         

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Suite<T: Hashable>: Pmf<T> {
+class Suite<DataType, HypoType: Hashable>: Pmf<HypoType> {
     enum Errors : Error {
         case UnimplementedMethod
     }
@@ -22,7 +22,7 @@ class Suite<T: Hashable>: Pmf<T> {
      - Returns: the normalizing constant
     */
     @discardableResult
-    func update(data: T) throws -> Double {
+    func update(data: DataType) throws -> Double {
         for hypo in keys() {
             let like = try likelihood(data: data, hypo: hypo)
             mult(key: hypo, factor: like)
@@ -37,7 +37,7 @@ class Suite<T: Hashable>: Pmf<T> {
        - hypo: some representation of the hypothesis
        - data: some representation of the data
     */
-    func likelihood(data: T, hypo: T) throws -> Double {
+    func likelihood(data: DataType, hypo: HypoType) throws -> Double {
         throw Errors.UnimplementedMethod
     }
     
