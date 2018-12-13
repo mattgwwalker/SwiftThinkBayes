@@ -47,7 +47,7 @@ class Chapter3Tests: XCTestCase {
     
     // The locomotive problem from Chapter 3.2 of Think Bayes
     func testTrain() throws {
-        let hypos = Array(0...1000)
+        let hypos = Array(1...1000)
         
         class Train : Suite<Int, Int> {
             override func likelihood(data: Int, hypo: Int) throws -> Double {
@@ -75,4 +75,49 @@ class Chapter3Tests: XCTestCase {
         XCTAssert(abs(mean(suite) - 333) < 0.5)
         XCTAssert(abs(suite.mean() - 333) < 0.5)
     }
+
+    
+    // The alternative-prior locomotive problem from Chapter 3.4 of Think Bayes
+    func testTrain3() throws {
+        let hypos500  = Array(1...500)
+        let hypos1000 = Array(1...1000)
+        let hypos2000 = Array(1...2000)
+
+        class Train : Suite<Int, Int> {
+            init(hypos: [Int], alpha: Double = 1.0) throws {
+                super.init(sequence: hypos)
+                for hypo in hypos {
+                    set(key: hypo, value: pow(Double(hypo), -alpha))
+                }
+                try normalize()
+            }
+            
+            override func likelihood(data: Int, hypo: Int) throws -> Double {
+                if hypo < data {
+                    return 0
+                } else {
+                    return 1.0 / Double(hypo)
+                }
+            }
+        }
+        
+        let suite500  = try Train(hypos: hypos500)
+        let suite1000 = try Train(hypos: hypos1000)
+        let suite2000 = try Train(hypos: hypos2000)
+        
+        let data = [30, 60, 90]
+        
+        for d in data {
+            try suite500.update(data:d)
+            try suite1000.update(data:d)
+            try suite2000.update(data:d)
+        }
+
+        // Note the level of accuracy as the book only gives the result to zero
+        // decimal places.
+        XCTAssert(abs(suite500.mean()  - 131) < 0.5)
+        XCTAssert(abs(suite1000.mean() - 133) < 0.5)
+        XCTAssert(abs(suite2000.mean() - 134) < 0.5)
+    }
+
 }
