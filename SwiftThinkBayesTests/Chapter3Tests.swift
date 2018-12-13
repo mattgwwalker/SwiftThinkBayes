@@ -129,6 +129,15 @@ class Chapter3Tests: XCTestCase {
         // These interval's types are Ints.
         XCTAssert(interval.0 == 91)
         XCTAssert(interval.1 == 243)
+        
+        
+        // Section 3.6
+        // ***********
+        
+        let cdf = suite2000.makeCdf()
+        
+        XCTAssert(try cdf.percentile(percentage: 5)  == 91)
+        XCTAssert(try cdf.percentile(percentage: 95) == 243)
     }
 
 }

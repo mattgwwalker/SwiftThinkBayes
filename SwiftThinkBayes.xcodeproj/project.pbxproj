@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		341232BA21C1C21900CB89DF /* Chapter3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341232B921C1C21900CB89DF /* Chapter3Tests.swift */; };
+		341232BC21C202FA00CB89DF /* Cdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341232BB21C202FA00CB89DF /* Cdf.swift */; };
+		341232BE21C20C0400CB89DF /* binarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341232BD21C20C0400CB89DF /* binarySearch.swift */; };
+		341232C021C2102300CB89DF /* CdfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341232BF21C2102300CB89DF /* CdfTests.swift */; };
 		3432444321B5147D00D3B99C /* SwiftThinkBayes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */; };
 		3432444821B5147D00D3B99C /* Chapter2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432444721B5147D00D3B99C /* Chapter2Tests.swift */; };
 		3432445421B5161600D3B99C /* Pmf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432445321B5161600D3B99C /* Pmf.swift */; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		341232B921C1C21900CB89DF /* Chapter3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter3Tests.swift; sourceTree = "<group>"; };
+		341232BB21C202FA00CB89DF /* Cdf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cdf.swift; sourceTree = "<group>"; };
+		341232BD21C20C0400CB89DF /* binarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = binarySearch.swift; sourceTree = "<group>"; };
+		341232BF21C2102300CB89DF /* CdfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CdfTests.swift; sourceTree = "<group>"; };
 		3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftThinkBayes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3432443D21B5147C00D3B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3432444221B5147D00D3B99C /* SwiftThinkBayesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftThinkBayesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				3432443D21B5147C00D3B99C /* Info.plist */,
+				341232BD21C20C0400CB89DF /* binarySearch.swift */,
 				344473DD21B5CE180095FA6B /* DictWrapper.swift */,
+				341232BB21C202FA00CB89DF /* Cdf.swift */,
 				3432445321B5161600D3B99C /* Pmf.swift */,
 				34AECE2121B67678007D42E4 /* Suite.swift */,
 			);
@@ -98,6 +106,7 @@
 				3432444921B5147D00D3B99C /* Info.plist */,
 				344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */,
 				344473DF21B5CF000095FA6B /* PmfTests.swift */,
+				341232BF21C2102300CB89DF /* CdfTests.swift */,
 				3432444721B5147D00D3B99C /* Chapter2Tests.swift */,
 				341232B921C1C21900CB89DF /* Chapter3Tests.swift */,
 			);
@@ -222,8 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				34AECE2221B67678007D42E4 /* Suite.swift in Sources */,
+				341232BC21C202FA00CB89DF /* Cdf.swift in Sources */,
 				3432445421B5161600D3B99C /* Pmf.swift in Sources */,
 				344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */,
+				341232BE21C20C0400CB89DF /* binarySearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +244,7 @@
 			files = (
 				3432444821B5147D00D3B99C /* Chapter2Tests.swift in Sources */,
 				344473DC21B5CDEC0095FA6B /* DictWrapperTests.swift in Sources */,
+				341232C021C2102300CB89DF /* CdfTests.swift in Sources */,
 				344473E021B5CF000095FA6B /* PmfTests.swift in Sources */,
 				341232BA21C1C21900CB89DF /* Chapter3Tests.swift in Sources */,
 			);
