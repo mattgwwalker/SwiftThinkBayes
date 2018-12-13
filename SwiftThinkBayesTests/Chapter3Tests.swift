@@ -118,6 +118,17 @@ class Chapter3Tests: XCTestCase {
         XCTAssert(abs(suite500.mean()  - 131) < 0.5)
         XCTAssert(abs(suite1000.mean() - 133) < 0.5)
         XCTAssert(abs(suite2000.mean() - 134) < 0.5)
+        
+        
+        // Section 3.5
+        // ***********
+        
+        let interval = (suite2000.percentile(percentage: 5)!,
+                        suite2000.percentile(percentage: 95)!)
+
+        // These interval's types are Ints.
+        XCTAssert(interval.0 == 91)
+        XCTAssert(interval.1 == 243)
     }
 
 }

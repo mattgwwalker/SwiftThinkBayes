@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Suite<DataType, HypoType: Hashable>: Pmf<HypoType> {
+class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
     enum Errors : Error {
         case UnimplementedMethod
     }

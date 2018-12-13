@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Pmf<T: Hashable>: DictWrapper<T> {
+class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
     enum Errors : Error {
         case TotalProbabilityZero
     }
@@ -39,6 +39,32 @@ class Pmf<T: Hashable>: DictWrapper<T> {
         
         return sum
     }
+    
+    
+    /**
+     Computes a percentile of a given Pmf.
+    
+     Note: this is not super efficient.  If you are planning
+     to compute more than a few percentiles, compute the Cdf.
+    
+     percentage: float 0-100
+    
+     returns: value from the Pmf
+    */
+    func percentile(percentage: Double) -> T? {
+        let p = percentage / 100
+        var total = 0.0
+        for (key, prob) in dict.sorted(by: { $0.key < $1.key }) {
+            total += prob
+            if total >= p {
+                return key
+            }
+        }
+        // TODO: What if we get here?
+        return nil
+    }
+    
+    
 }
 
 extension Pmf where T: BinaryInteger {

@@ -20,5 +20,12 @@ class PmfTests: XCTestCase {
         // Normalise should throw as the total is zero
         XCTAssertThrowsError(try pmf.normalize())
     }
+ 
     
+    func testPercentile() {
+        let pmf = Pmf<Int>()
+        
+        // There's no data, so any call to percentile should return nil
+        XCTAssert(pmf.percentile(percentage: 0) == nil)
+    }
 }
