@@ -40,3 +40,29 @@ class Pmf<T: Hashable>: DictWrapper<T> {
         return sum
     }
 }
+
+extension Pmf where T: BinaryInteger {
+    /*** Computes the mean of a PMF.
+     */
+    func mean() -> Double {
+        var mu = 0.0
+        for (x, p) in dict {
+            mu += p * Double(x)
+        }
+        return mu
+    }
+}
+
+// Why on earth can this be merged with the method defintion above?  It seems
+// that Swift's "where" clause could do with an "or" operator.
+extension Pmf where T: BinaryFloatingPoint {
+    /*** Computes the mean of a PMF.
+     */
+    func mean() -> Double {
+        var mu = 0.0
+        for (x, p) in dict {
+            mu += p * Double(x)
+        }
+        return mu
+    }
+}
