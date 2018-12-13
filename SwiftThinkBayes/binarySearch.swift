@@ -11,6 +11,12 @@ import Foundation
 /**
  Iterative version of binary search.
  
+ Given a sorted array a, and a value, key, binarySearch() will return the
+ index of the array where the key occurs.
+ 
+ If the array does not contain the key, then the returned index will be an
+ index higher than the index with the highest value not greater than the key.
+ 
  Why isn't this part of the Swift standard library?!
  
  Source: https://github.com/raywenderlich/swift-algorithm-club
@@ -30,7 +36,7 @@ public func binarySearch<T: Comparable>(_ a: [T], key: T) -> Int? {
         }
     }
     
-    // Modification by Matthew
+    // Modification by Matthew to allow non-exact key searches.
     if lowerBound == upperBound {
         return lowerBound
     }
