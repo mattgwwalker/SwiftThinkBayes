@@ -47,11 +47,14 @@ class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
      Note: this is not super efficient.  If you are planning
      to compute more than a few percentiles, compute the Cdf.
     
-     percentage: float 0-100
+     - Parameters:
+     - percentage: floating point value between 0 and 100, inclusive.
     
-     returns: value from the Pmf
+     - Returns: value from the Pmf
     */
     func percentile(percentage: Double) -> T? {
+        // TODO: Should check that percentage is within range and that
+        // the dict is not empty.
         let p = percentage / 100
         var total = 0.0
         for (key, prob) in dict.sorted(by: { $0.key < $1.key }) {
@@ -82,6 +85,27 @@ class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
 
         return Cdf<T>(xs: xs, ps:ps)
     }
+    
+    /**
+     Returns the value with the highest probability.
+     */
+    func mode() -> T? {
+        var max : Double? = nil
+        var maxKey : T? = nil
+        
+        for (key, value) in dict {
+            if max == nil || value > max! {
+                max = value
+                maxKey = key
+            }
+        }
+        
+        return maxKey
+    }
+    
+    func maximumLikelihood() -> T? {
+        return mode()
+    }
 }
 
 extension Pmf where T: BinaryInteger {
@@ -96,8 +120,8 @@ extension Pmf where T: BinaryInteger {
     }
 }
 
-// Why on earth can this be merged with the method defintion above?  It seems
-// that Swift's "where" clause could do with an "or" operator.
+// Why on earth can this not be merged with the method defintion above?  It
+// seems that Swift's "where" clause could do with an "or" operator.
 extension Pmf where T: BinaryFloatingPoint {
     /*** Computes the mean of a PMF.
      */
