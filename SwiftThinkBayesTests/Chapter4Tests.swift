@@ -12,6 +12,7 @@ import XCTest
 class Chapter4Tests: XCTestCase {
     let epsilon = 10e-7
     
+    // Euto problem from Chapters 4.1--4.2 of Think Bayes
     func testEuro() throws {
         class Euro : Suite<Character, Int> {
             override func likelihood(data: Character, hypo: Int) throws -> Double {
@@ -36,6 +37,9 @@ class Chapter4Tests: XCTestCase {
         }
         
         XCTAssert(suite.maximumLikelihood() == 56)
+        XCTAssert(suite.mode() == 56)
+        XCTAssert(abs(suite.mean() - 55.95) < 0.01)
+        XCTAssert(suite.median() == 56)
     }
 
 }

@@ -106,6 +106,10 @@ class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
     func maximumLikelihood() -> T? {
         return mode()
     }
+    
+    func median() -> T? {
+        return percentile(percentage: 50)
+    }
 }
 
 extension Pmf where T: BinaryInteger {
