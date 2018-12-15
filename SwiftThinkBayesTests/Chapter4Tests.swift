@@ -45,6 +45,9 @@ class Chapter4Tests: XCTestCase {
         let credibleInterval = try cdf.credibleInterval(percentage: 90)
         XCTAssert(credibleInterval.low  ==  51)
         XCTAssert(credibleInterval.high ==  61)
+        
+        // As per section 4.2, calling prob at 50% isn't what you want
+        XCTAssert(abs(suite.prob(50) - 0.021) < 0.001)
     }
 
 }
