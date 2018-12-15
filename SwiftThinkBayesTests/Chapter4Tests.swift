@@ -40,6 +40,11 @@ class Chapter4Tests: XCTestCase {
         XCTAssert(suite.mode() == 56)
         XCTAssert(abs(suite.mean() - 55.95) < 0.01)
         XCTAssert(suite.median() == 56)
+
+        let cdf = suite.makeCdf()
+        let credibleInterval = try cdf.credibleInterval(percentage: 90)
+        XCTAssert(credibleInterval.low  ==  51)
+        XCTAssert(credibleInterval.high ==  61)
     }
 
 }

@@ -59,4 +59,22 @@ class Cdf<T> {
     func percentile(percentage: Double) throws -> T {
         return try value(percentage / 100.0)
     }
+    
+    
+    /**
+     Computes the central credible interval.
+    
+     If percentage=90, computes the 90% CI.
+    
+     - Parameters:
+     - percentage: float between 0 and 100
+    
+     - Returns: tuple of two floats, low and high
+    */
+    func credibleInterval(percentage: Double) throws -> (low: T, high: T) {
+        let prob = (1.0 - percentage / 100.0) / 2.0
+        let interval = (low: try self.value(prob),
+                        high: try self.value(1 - prob))
+        return interval
+    }
 }
