@@ -12,7 +12,7 @@ import XCTest
 class Chapter4Tests: XCTestCase {
     let epsilon = 10e-7
     
-    // Euto problem from Chapters 4.1--4.2 of Think Bayes
+    // Euro problem from Chapters 4.1--4.2 of Think Bayes
     func testEuro() throws {
         class Euro : Suite<Character, Int> {
             override func likelihood(data: Character, hypo: Int) throws -> Double {
