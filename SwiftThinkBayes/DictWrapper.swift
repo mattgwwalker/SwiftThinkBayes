@@ -15,11 +15,20 @@ class DictWrapper<T: Hashable> {
         // Do nothing
     }
     
-    init(sequence: [T]) {
-        for hypo in sequence {
-            set(key:hypo, value: 1)
+    init(keys: [T]) {
+        for key in keys {
+            set(key:key, value: 1)
         }
     }
+
+    init(keys: [T], values: [Double]) {
+        precondition(keys.count == values.count)
+        
+        for index in 0 ... keys.count-1 {
+            set(key:keys[index], value: values[index])
+        }
+    }
+
     
     /**
      Sets the freq/prob associated with the given key.

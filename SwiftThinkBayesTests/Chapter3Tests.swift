@@ -25,7 +25,7 @@ class Chapter3Tests: XCTestCase {
             }
         }
         
-        let suite = Dice(sequence: [4, 6, 8, 12, 20])
+        let suite = Dice(hypos: [4, 6, 8, 12, 20])
         try suite.update(data: 6)
         
         XCTAssert(abs(suite.prob(4)  - 0) < epsilon)
@@ -59,7 +59,7 @@ class Chapter3Tests: XCTestCase {
             }
         }
         
-        let suite = Train(sequence: hypos)
+        let suite = Train(hypos: hypos)
         try suite.update(data:60)
         
         func mean(_ suite: Suite<Int, Int>) -> Double {
@@ -85,7 +85,7 @@ class Chapter3Tests: XCTestCase {
 
         class Train : Suite<Int, Int> {
             init(hypos: [Int], alpha: Double = 1.0) throws {
-                super.init(sequence: hypos)
+                super.init(hypos: hypos)
                 for hypo in hypos {
                     set(key: hypo, value: pow(Double(hypo), -alpha))
                 }

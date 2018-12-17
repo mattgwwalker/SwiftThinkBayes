@@ -167,7 +167,7 @@ class Chapter2Tests: XCTestCase {
             }
         }
         
-        let suite = Monty(sequence: Array("ABC"))
+        let suite = Monty(hypos: Array("ABC"))
         try suite.update(data: "B")
         suite.print()
         
@@ -180,7 +180,7 @@ class Chapter2Tests: XCTestCase {
         class M_and_M : Suite<(String,String),String> {
             let hypotheses : [String : [String: [String:Int]]]
             
-            init(hypos: [String]) {
+            override init(hypos: [String]) {
                 let mix94 = ["Brown":30,
                              "Yellow":20,
                              "Red":20,
@@ -200,7 +200,7 @@ class Chapter2Tests: XCTestCase {
                 
                 self.hypotheses = ["A":hypoA, "B":hypoB]
                 
-                super.init(sequence: hypos)
+                super.init(hypos: hypos)
             }
             
             override func likelihood(data: (String,String), hypo: String) throws -> Double {

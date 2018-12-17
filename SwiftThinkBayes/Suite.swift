@@ -13,6 +13,19 @@ class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
         case UnimplementedMethod
     }
     
+    override init() {
+        super.init()
+    }
+    
+    init(hypos: [HypoType]) {
+        super.init(keys: hypos)
+    }
+
+    init(hypos: [HypoType], probs: [Double]) {
+        super.init(keys: hypos, values: probs)
+    }
+
+    
     /**
      Updates each hypothesis based on the data.
     

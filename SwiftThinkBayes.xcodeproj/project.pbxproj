@@ -18,6 +18,7 @@
 		344473DC21B5CDEC0095FA6B /* DictWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */; };
 		344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DD21B5CE180095FA6B /* DictWrapper.swift */; };
 		344473E021B5CF000095FA6B /* PmfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344473DF21B5CF000095FA6B /* PmfTests.swift */; };
+		3491580221C8544900D80D03 /* Beta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491580121C8544900D80D03 /* Beta.swift */; };
 		34AECE2221B67678007D42E4 /* Suite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AECE2121B67678007D42E4 /* Suite.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictWrapperTests.swift; sourceTree = "<group>"; };
 		344473DD21B5CE180095FA6B /* DictWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictWrapper.swift; sourceTree = "<group>"; };
 		344473DF21B5CF000095FA6B /* PmfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PmfTests.swift; sourceTree = "<group>"; };
+		3491580121C8544900D80D03 /* Beta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beta.swift; sourceTree = "<group>"; };
 		34AECE1F21B661CE007D42E4 /* thinkbayes.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes.py; sourceTree = "<group>"; };
 		34AECE2021B661DE007D42E4 /* thinkbayes2.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes2.py; sourceTree = "<group>"; };
 		34AECE2121B67678007D42E4 /* Suite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suite.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				341232BB21C202FA00CB89DF /* Cdf.swift */,
 				3432445321B5161600D3B99C /* Pmf.swift */,
 				34AECE2121B67678007D42E4 /* Suite.swift */,
+				3491580121C8544900D80D03 /* Beta.swift */,
 			);
 			path = SwiftThinkBayes;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				34AECE2221B67678007D42E4 /* Suite.swift in Sources */,
 				341232BC21C202FA00CB89DF /* Cdf.swift in Sources */,
 				3432445421B5161600D3B99C /* Pmf.swift in Sources */,
+				3491580221C8544900D80D03 /* Beta.swift in Sources */,
 				344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */,
 				341232BE21C20C0400CB89DF /* binarySearch.swift in Sources */,
 			);

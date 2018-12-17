@@ -77,4 +77,6 @@ class Cdf<T> {
                         high: try self.value(1 - prob))
         return interval
     }
+    
+    
 }
