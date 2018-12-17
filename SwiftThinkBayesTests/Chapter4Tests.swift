@@ -88,5 +88,28 @@ class Chapter4Tests: XCTestCase {
         let credibleInterval2 = try cdf2.credibleInterval(percentage: 90)
         XCTAssert(credibleInterval2.low  ==  51)
         XCTAssert(credibleInterval2.high ==  61)
+        
+        
+        class Euro2 : Suite<(Int, Int), Int> {
+            override func likelihood(data: (heads: Int, tails: Int),
+                                     hypo: Int) throws -> Double {
+                let x = Double(hypo) / 100.0
+                let like = pow(x, Double(data.heads)) * pow(1-x, Double(data.tails))
+                return like
+            }
+        }
+        
+        let suite3 = Euro2(sequence: hypos)
+        try suite3.update(data: (heads:140, tails:110))
+        
+        XCTAssert(suite3.maximumLikelihood() == 56)
+        XCTAssert(suite3.mode() == 56)
+        XCTAssert(abs(suite3.mean() - 55.95) < 0.01)
+        XCTAssert(suite3.median() == 56)
+        
+        let cdf3 = suite3.makeCdf()
+        let credibleInterval3 = try cdf3.credibleInterval(percentage: 90)
+        XCTAssert(credibleInterval3.low  ==  51)
+        XCTAssert(credibleInterval3.high ==  61)
     }
 }
