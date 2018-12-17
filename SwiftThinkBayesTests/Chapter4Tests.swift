@@ -71,7 +71,22 @@ class Chapter4Tests: XCTestCase {
         let triangleCredibleInterval = try triangleCdf.credibleInterval(percentage: 90)
         XCTAssert(triangleCredibleInterval.low  ==  51)
         XCTAssert(triangleCredibleInterval.high ==  61)
-
+        
+        
+        // Section 4.4
+        // ***********
+        
+        let suite2 = Euro(sequence: hypos)
+        try suite2.updateSet(dataset: dataset)
+        
+        XCTAssert(suite.maximumLikelihood() == 56)
+        XCTAssert(suite.mode() == 56)
+        XCTAssert(abs(suite.mean() - 55.95) < 0.01)
+        XCTAssert(suite.median() == 56)
+        
+        let cdf2 = suite.makeCdf()
+        let credibleInterval2 = try cdf2.credibleInterval(percentage: 90)
+        XCTAssert(credibleInterval2.low  ==  51)
+        XCTAssert(credibleInterval2.high ==  61)
     }
-
 }

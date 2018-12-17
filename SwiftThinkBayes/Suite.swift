@@ -31,6 +31,31 @@ class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
     }
     
     /**
+     Updates each hypothesis based on the dataset.
+     
+     This is more efficient than calling Update repeatedly because
+     it waits until the end to Normalize.
+     
+     Modifies the suite directly; if you want to keep the original, make
+     a copy.
+     
+     - Parameters:
+     - dataset: a sequence of data
+     
+     - Returns: the normalizing constant
+     */
+    @discardableResult
+    func updateSet(dataset: [DataType]) throws -> Double {
+        for data in dataset {
+            for hypo in keys() {
+                let like = try likelihood(data: data, hypo: hypo)
+                mult(key: hypo, factor: like)
+            }
+        }
+        return try normalize()
+    }
+    
+    /**
      Computes the likelihood of the data under the hypothesis.
     
      - Parameters:
