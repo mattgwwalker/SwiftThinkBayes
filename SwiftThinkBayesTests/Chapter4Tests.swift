@@ -48,6 +48,30 @@ class Chapter4Tests: XCTestCase {
         
         // As per section 4.2, calling prob at 50% isn't what you want
         XCTAssert(abs(suite.prob(50) - 0.021) < 0.001)
+        
+        
+        // Section 4.3
+        // ***********
+        
+        let triangleSuite = Euro()
+        for x in 0...50 {
+            triangleSuite.set(key: x, value: Double(x))
+        }
+        for x in 51...100 {
+            triangleSuite.set(key: x, value: Double(x))
+        }
+        try triangleSuite.normalize()
+        
+        for data in dataset {
+            try triangleSuite.update(data: data)
+        }
+        
+        XCTAssert(triangleSuite.median() == 56)
+        let triangleCdf = triangleSuite.makeCdf()
+        let triangleCredibleInterval = try triangleCdf.credibleInterval(percentage: 90)
+        XCTAssert(triangleCredibleInterval.low  ==  51)
+        XCTAssert(triangleCredibleInterval.high ==  61)
+
     }
 
 }
