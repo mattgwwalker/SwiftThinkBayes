@@ -28,4 +28,19 @@ class Chapter5Tests: XCTestCase {
         // think she will lose, so the probability of winning is 1/6."
         XCTAssert(abs(probability2(yes:1, no:5) - 1/6) < epsilon)
     }
+    
+    func testAddends() throws {
+        class Die : Pmf<Int> {
+            init(sides: Int) throws {
+                super.init()
+                for side in 1 ... sides {
+                    set(key:side, value:1)
+                }
+                try normalize()
+            }
+        }
+        
+        let d6 = try Die(sides: 6)
+        
+    }
 }
