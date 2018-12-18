@@ -69,6 +69,7 @@ class Beta {
      */
     func makePmf(steps: Int = 100) throws -> Pmf<Double> {
         if alpha < 1 || beta < 1 {
+            // TODO: Implement this (see chapter 4.5)
             throw Errors.NotImplemented
             /*
             let cdf = makeCdf()
