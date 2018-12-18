@@ -29,6 +29,7 @@ class Chapter5Tests: XCTestCase {
         XCTAssert(abs(probability2(yes:1, no:5) - 1/6) < epsilon)
     }
     
+    // Chapter 5.4 of Think Bayes
     func testAddends() throws {
         class Die : Pmf<Int> {
             init(sides: Int) throws {
@@ -41,6 +42,11 @@ class Chapter5Tests: XCTestCase {
         }
         
         let d6 = try Die(sides: 6)
+        
+        let d6_cdf = d6.makeCdf()
+        let dice = [d6_cdf, d6_cdf, d6_cdf]
+        print(try randomSum(dice))
+        //let three = sampleSum(dice, 1000)
         
     }
 }

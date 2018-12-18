@@ -79,4 +79,10 @@ class Cdf<T> {
     }
     
     
+    /**
+     Chooses a random value from this distribution.
+     */
+    func random() throws -> T {
+        return try value(Double.random(in: 0...1))
+    }
 }

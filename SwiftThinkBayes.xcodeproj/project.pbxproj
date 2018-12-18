@@ -14,6 +14,7 @@
 		341232C221C225A500CB89DF /* Chapter4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341232C121C225A500CB89DF /* Chapter4Tests.swift */; };
 		341A0A7621C872D400E583B2 /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7521C872D400E583B2 /* odds.swift */; };
 		341A0A7821C873E400E583B2 /* Chapter5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7721C873E400E583B2 /* Chapter5Tests.swift */; };
+		341A0A7A21C9B91600E583B2 /* addends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7921C9B91600E583B2 /* addends.swift */; };
 		3432444321B5147D00D3B99C /* SwiftThinkBayes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */; };
 		3432444821B5147D00D3B99C /* Chapter2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432444721B5147D00D3B99C /* Chapter2Tests.swift */; };
 		3432445421B5161600D3B99C /* Pmf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432445321B5161600D3B99C /* Pmf.swift */; };
@@ -42,6 +43,7 @@
 		341232C121C225A500CB89DF /* Chapter4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter4Tests.swift; sourceTree = "<group>"; };
 		341A0A7521C872D400E583B2 /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		341A0A7721C873E400E583B2 /* Chapter5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter5Tests.swift; sourceTree = "<group>"; };
+		341A0A7921C9B91600E583B2 /* addends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addends.swift; sourceTree = "<group>"; };
 		3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftThinkBayes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3432443D21B5147C00D3B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3432444221B5147D00D3B99C /* SwiftThinkBayesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftThinkBayesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,7 @@
 				3432443D21B5147C00D3B99C /* Info.plist */,
 				341232BD21C20C0400CB89DF /* binarySearch.swift */,
 				341A0A7521C872D400E583B2 /* odds.swift */,
+				341A0A7921C9B91600E583B2 /* addends.swift */,
 				344473DD21B5CE180095FA6B /* DictWrapper.swift */,
 				341232BB21C202FA00CB89DF /* Cdf.swift */,
 				3432445321B5161600D3B99C /* Pmf.swift */,
@@ -245,6 +248,7 @@
 				34AECE2221B67678007D42E4 /* Suite.swift in Sources */,
 				341232BC21C202FA00CB89DF /* Cdf.swift in Sources */,
 				3432445421B5161600D3B99C /* Pmf.swift in Sources */,
+				341A0A7A21C9B91600E583B2 /* addends.swift in Sources */,
 				3491580221C8544900D80D03 /* Beta.swift in Sources */,
 				341A0A7621C872D400E583B2 /* odds.swift in Sources */,
 				344473DE21B5CE180095FA6B /* DictWrapper.swift in Sources */,
