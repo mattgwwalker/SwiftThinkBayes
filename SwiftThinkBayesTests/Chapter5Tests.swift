@@ -50,6 +50,9 @@ class Chapter5Tests: XCTestCase {
         
         let mean = three.mean()
         print(mean)
-        XCTAssert( abs(mean - 10) < 1) // mean is ~10.
+        XCTAssert( abs(mean - 10.5) < 1) // mean is ~10.5.
+        
+        let three_exact = d6 + d6 + d6
+        XCTAssert( abs(three_exact.mean() - 10.5) < epsilon) // mean is 10.5.
     }
 }

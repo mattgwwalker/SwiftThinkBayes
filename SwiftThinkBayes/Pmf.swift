@@ -40,6 +40,8 @@ class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
         return sum
     }
     
+
+    
     
     /**
      Computes a percentile of a given Pmf.
@@ -122,6 +124,22 @@ extension Pmf where T: BinaryInteger {
         }
         return mu
     }
+    
+    func add(_ other: Pmf<T>) -> Pmf<T> {
+        let pmf = Pmf<T>()
+        for (v1, p1) in dict {
+            for (v2, p2) in other.dict {
+                pmf.incr(v1+v2, term: p1*p2)
+            }
+        }
+        
+        return pmf
+    }
+    
+    static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
+        return left.add(right)
+    }
+
 }
 
 // Why on earth can this not be merged with the method defintion above?  It
@@ -135,6 +153,21 @@ extension Pmf where T: BinaryFloatingPoint {
             mu += p * Double(x)
         }
         return mu
+    }
+    
+    func add(_ other: Pmf<T>) -> Pmf<T> {
+        let pmf = Pmf<T>()
+        for (v1, p1) in dict {
+            for (v2, p2) in other.dict {
+                pmf.incr(v1+v2, term: p1*p2)
+            }
+        }
+        
+        return pmf
+    }
+    
+    static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
+        return left.add(right)
     }
 }
 
