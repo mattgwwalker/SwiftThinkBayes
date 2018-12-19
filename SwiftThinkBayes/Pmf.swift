@@ -12,7 +12,7 @@ class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
     enum Errors : Error {
         case TotalProbabilityZero
     }
-    
+
     /**
      Normalizes this PMF so the sum of all probs is fraction.
      
@@ -137,3 +137,22 @@ extension Pmf where T: BinaryFloatingPoint {
         return mu
     }
 }
+
+
+
+/**
+ Initialisation to convert a list of non-unique keys into a histogram
+ */
+func makePmfFromList<T: Hashable & Comparable>(list: [T]) throws -> Pmf<T> {
+    let pmf = Pmf<T>()
+    
+    for x in list {
+        pmf.incr(x)
+    }
+    
+    try pmf.normalize()
+    
+    return pmf
+}
+
+

@@ -17,3 +17,15 @@ func randomSum<T: Numeric>(_ dists: [Cdf<T>]) throws -> T {
     
     return total
 }
+
+
+func sampleSum<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
+    var list: [T] = []
+    
+    for _ in 1 ... n {
+        list.append( try randomSum(dists) )
+    }
+    
+    let pmf = try makePmfFromList(list: list)
+    return pmf
+}

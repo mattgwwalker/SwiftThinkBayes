@@ -30,7 +30,7 @@ class Chapter5Tests: XCTestCase {
     }
     
     // Chapter 5.4 of Think Bayes
-    func testAddends() throws {
+    func testSimulation() throws {
         class Die : Pmf<Int> {
             init(sides: Int) throws {
                 super.init()
@@ -45,8 +45,11 @@ class Chapter5Tests: XCTestCase {
         
         let d6_cdf = d6.makeCdf()
         let dice = [d6_cdf, d6_cdf, d6_cdf]
-        print(try randomSum(dice))
-        //let three = sampleSum(dice, 1000)
+
+        let three = try sampleSum(dice, 1000)
         
+        let mean = three.mean()
+        print(mean)
+        XCTAssert( abs(mean - 10) < 1) // mean is ~10.
     }
 }

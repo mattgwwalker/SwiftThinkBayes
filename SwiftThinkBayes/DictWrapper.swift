@@ -37,6 +37,7 @@ class DictWrapper<T: Hashable> {
         dict[key] = value
     }
     
+    
     /**
      Gets the probability associated with the given key.  If the key isn't found, the value `defaultValue` is returned.
      */
@@ -46,6 +47,18 @@ class DictWrapper<T: Hashable> {
         }
         return value
     }
+    
+    /**
+     Increments the freq/prob associated with the value x.
+    
+     - Parameters:
+        - x: number value
+        - term: how much to increment by
+     */
+    func incr(_ key:T, term: Double = 1) {
+        dict[key] = prob(key) + term
+    }
+    
     
     /**
      Scales the freq/prob associated with the given key by the specified factor.
