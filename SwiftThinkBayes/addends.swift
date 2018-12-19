@@ -8,6 +8,14 @@
 
 import Foundation
 
+/**
+ Chooses a random value from each dist and returns the sum.
+
+ - Parameters:
+    - dists: sequence of Pmf or Cdf objects
+
+ - returns: numerical sum
+*/
 func randomSum<T: Numeric>(_ dists: [Cdf<T>]) throws -> T {
     var total: T = 0
     
@@ -18,7 +26,15 @@ func randomSum<T: Numeric>(_ dists: [Cdf<T>]) throws -> T {
     return total
 }
 
+/**
+ Draws a sample of sums from a list of distributions.
 
+ - Parameters:
+    - dists: sequence of Cdf objects
+    - n: sample size
+
+ - returns: new Pmf of sums
+*/
 func sampleSum<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
     var list: [T] = []
     
