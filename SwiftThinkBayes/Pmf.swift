@@ -129,7 +129,7 @@ extension Pmf where T: BinaryInteger {
         let pmf = Pmf<T>()
         for (v1, p1) in dict {
             for (v2, p2) in other.dict {
-                pmf.incr(v1+v2, term: p1*p2)
+                pmf.incr(v1+v2, by: p1*p2)
             }
         }
         
@@ -139,7 +139,17 @@ extension Pmf where T: BinaryInteger {
     static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
         return left.add(right)
     }
-
+    
+    func max(_ other: Pmf<T>) -> Pmf<T> {
+        let pmf = Pmf<T>()
+        for (v1, p1) in dict {
+            for (v2, p2) in other.dict {
+                pmf.incr(Swift.max(v1, v2), by: p1*p2)
+            }
+        }
+        
+        return pmf
+    }
 }
 
 // Why on earth can this not be merged with the method defintion above?  It
@@ -159,7 +169,7 @@ extension Pmf where T: BinaryFloatingPoint {
         let pmf = Pmf<T>()
         for (v1, p1) in dict {
             for (v2, p2) in other.dict {
-                pmf.incr(v1+v2, term: p1*p2)
+                pmf.incr(v1+v2, by: p1*p2)
             }
         }
         
@@ -168,6 +178,17 @@ extension Pmf where T: BinaryFloatingPoint {
     
     static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
         return left.add(right)
+    }
+    
+    func max(_ other: Pmf<T>) -> Pmf<T> {
+        let pmf = Pmf<T>()
+        for (v1, p1) in dict {
+            for (v2, p2) in other.dict {
+                pmf.incr(Swift.max(v1, v2), by: p1*p2)
+            }
+        }
+        
+        return pmf
     }
 }
 

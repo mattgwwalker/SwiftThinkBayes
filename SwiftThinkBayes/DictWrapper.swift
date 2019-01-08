@@ -53,9 +53,9 @@ class DictWrapper<T: Hashable> {
     
      - Parameters:
         - x: number value
-        - term: how much to increment by
+        - by: how much to increment by
      */
-    func incr(_ key:T, term: Double = 1) {
+    func incr(_ key:T, by term: Double = 1) {
         dict[key] = prob(key) + term
     }
     

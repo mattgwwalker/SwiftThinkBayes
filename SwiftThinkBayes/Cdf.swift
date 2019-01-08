@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Cdf<T> {
+class Cdf<T: Comparable & Hashable> {
     enum Errors : Error {
         case ProbabilityNotInRange
         case NoValues
@@ -29,6 +29,26 @@ class Cdf<T> {
         self.xs = xs
         self.ps = ps
     }
+    
+    
+    /**
+     Makes a normalized Pmf from a Cdf object.
+    
+     - Parameters:
+        - cdf: Cdf object
+    
+     - Returns: Pmf object
+     */
+    func makePmf() -> Pmf<T> {
+        let pmf = Pmf<T>()
+        var prev = 0.0
+        for i in 0 ..< ps.count {
+            pmf.incr(xs[i], by: ps[i]-prev)
+            prev = ps[i]
+        }
+        return pmf
+    }
+    
     
     /**
      Returns InverseCDF(p), the value that corresponds to probability p.
@@ -84,5 +104,15 @@ class Cdf<T> {
      */
     func random() throws -> T {
         return try value(Double.random(in: 0...1))
+    }
+    
+    
+    func max(_ k: Int) -> Cdf<T> {
+        var new_ps : [Double] = []
+        for p in ps {
+            new_ps.append(pow(p, Double(k)))
+        }
+        let cdf = Cdf(xs: xs, ps: new_ps)
+        return cdf
     }
 }
