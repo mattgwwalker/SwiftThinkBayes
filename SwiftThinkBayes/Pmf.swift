@@ -8,11 +8,11 @@
 
 import Foundation
 
-class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
+class Pmf<T: Hashable>: DictWrapper<T> {
     enum Errors : Error {
         case TotalProbabilityZero
     }
-
+    
     /**
      Normalizes this PMF so the sum of all probs is fraction.
      
@@ -40,53 +40,6 @@ class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
         return sum
     }
     
-
-    
-    
-    /**
-     Computes a percentile of a given Pmf.
-    
-     Note: this is not super efficient.  If you are planning
-     to compute more than a few percentiles, compute the Cdf.
-    
-     - Parameters:
-     - percentage: floating point value between 0 and 100, inclusive.
-    
-     - Returns: value from the Pmf
-    */
-    func percentile(percentage: Double) -> T? {
-        // TODO: Should check that percentage is within range and that
-        // the dict is not empty.
-        let p = percentage / 100
-        var total = 0.0
-        for (key, prob) in dict.sorted(by: { $0.key < $1.key }) {
-            total += prob
-            if total >= p {
-                return key
-            }
-        }
-        // TODO: What if we get here?
-        return nil
-    }
-    
-    /**
-     Makes a cumulative distribution function (CDF)
-     */
-    func makeCdf() -> Cdf<T> {
-        var runsum : Double = 0.0
-        var xs : [T] = []
-        var ps : [Double] = []
-        
-        let sum = total()
-        
-        for (key, count) in dict.sorted(by: { $0.key < $1.key }) {
-            runsum += count
-            xs.append(key)
-            ps.append(runsum / sum)
-        }
-
-        return Cdf<T>(xs: xs, ps:ps)
-    }
     
     /**
      Returns the value with the highest probability.
@@ -109,10 +62,63 @@ class Pmf<T: Hashable & Comparable>: DictWrapper<T> {
         return mode()
     }
     
+}
+
+
+
+
+extension Pmf where T: Comparable {
+    /**
+     Computes a percentile of a given Pmf.
+     
+     Note: this is not super efficient.  If you are planning
+     to compute more than a few percentiles, compute the Cdf.
+     
+     - Parameters:
+     - percentage: floating point value between 0 and 100, inclusive.
+     
+     - Returns: value from the Pmf
+     */
+    func percentile(percentage: Double) -> T? {
+        // TODO: Should check that percentage is within range and that
+        // the dict is not empty.
+        let p = percentage / 100
+        var total = 0.0
+        for (key, prob) in dict.sorted(by: { $0.key < $1.key }) {
+            total += prob
+            if total >= p {
+                return key
+            }
+        }
+        // TODO: What if we get here?
+        return nil
+    }
+    
     func median() -> T? {
         return percentile(percentage: 50)
     }
+
+    
+    /**
+     Makes a cumulative distribution function (CDF)
+     */
+    func makeCdf() -> Cdf<T> {
+        var runsum : Double = 0.0
+        var xs : [T] = []
+        var ps : [Double] = []
+        
+        let sum = total()
+        
+        for (key, count) in dict.sorted(by: { $0.key < $1.key }) {
+            runsum += count
+            xs.append(key)
+            ps.append(runsum / sum)
+        }
+        
+        return Cdf<T>(xs: xs, ps:ps)
+    }
 }
+
 
 extension Pmf where T: BinaryInteger {
     /*** Computes the mean of a PMF.

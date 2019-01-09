@@ -116,3 +116,22 @@ func sampleMax<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
     let pmf = try makePmfFromList(list: list)
     return pmf
 }
+
+/**
+ Make a mixture distribution.
+
+ - Parameters:
+    - metapmf: Pmf that maps from Pmfs to probs.
+
+ - Returns: Pmf object.
+*/
+func makeMixture<T: Comparable & Hashable>(_ metapmf: Pmf<Pmf<T>>) -> Pmf<T> {
+    let mix = Pmf<T>()
+
+    for (pmf, weight) in metapmf.items() {
+        for (x, p) in pmf.items() {
+            mix.incr(x, by: weight * p)
+        }
+    }
+    return mix
+}

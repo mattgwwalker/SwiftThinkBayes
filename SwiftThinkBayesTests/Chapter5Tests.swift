@@ -29,18 +29,19 @@ class Chapter5Tests: XCTestCase {
         XCTAssert(abs(probability2(yes:1, no:5) - 1/6) < epsilon)
     }
     
+    
+    class Die : Pmf<Int> {
+        init(sides: Int) throws {
+            super.init()
+            for side in 1 ... sides {
+                set(key:side, value:1)
+            }
+            try normalize()
+        }
+    }
+    
     // Chapter 5.4 of Think Bayes
     func testAddends() throws {
-        class Die : Pmf<Int> {
-            init(sides: Int) throws {
-                super.init()
-                for side in 1 ... sides {
-                    set(key:side, value:1)
-                }
-                try normalize()
-            }
-        }
-        
         let d6 = try Die(sides: 6)
         
         let d6_cdf = d6.makeCdf()
@@ -57,16 +58,6 @@ class Chapter5Tests: XCTestCase {
     
     // Chapter 5.5 of Think Bayes
     func testMaxima() throws {
-        class Die : Pmf<Int> {
-            init(sides: Int) throws {
-                super.init()
-                for side in 1 ... sides {
-                    set(key:side, value:1)
-                }
-                try normalize()
-            }
-        }
-        
         // Create a six-sided die
         let d6 = try Die(sides: 6)
         let d6_cdf = d6.makeCdf()
@@ -120,4 +111,19 @@ class Chapter5Tests: XCTestCase {
         XCTAssert( abs(mean3 - 14.23311854) < epsilon)
     }
 
+    // Chapter 5.6 of Think Bayes; note that the example code is different from
+    // the book.
+    func testMixtures() throws {
+        let pmf_dice = Pmf<Pmf<Int>>()
+        pmf_dice.set(key: try Die(sides: 4),  value: 5)
+        pmf_dice.set(key: try Die(sides: 6),  value: 4)
+        pmf_dice.set(key: try Die(sides: 8),  value: 3)
+        pmf_dice.set(key: try Die(sides: 12), value: 2)
+        pmf_dice.set(key: try Die(sides: 20), value: 1)
+        try pmf_dice.normalize()
+        
+        let mix = makeMixture(pmf_dice)
+        XCTAssert( abs(mix.prob(1) - 0.167222222222) < epsilon)
+        XCTAssert( abs(mix.prob(20) - 0.0033333333333333335) < epsilon)
+    }
 }

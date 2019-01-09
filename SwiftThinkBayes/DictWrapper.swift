@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DictWrapper<T: Hashable> {
+class DictWrapper<T: Hashable> : Hashable {
     var dict: [T: Double] = [T:Double]()
     
     init() {
@@ -27,6 +27,14 @@ class DictWrapper<T: Hashable> {
         for index in 0 ... keys.count-1 {
             set(key:keys[index], value: values[index])
         }
+    }
+    
+    static func == (lhs: DictWrapper<T>, rhs: DictWrapper<T>) -> Bool {
+        return lhs.dict == rhs.dict
+    }
+        
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(dict)
     }
 
     
