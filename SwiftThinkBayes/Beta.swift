@@ -13,7 +13,7 @@ import Foundation
 
  See http://en.wikipedia.org/wiki/Beta_distribution
 */
-class Beta {
+public class Beta {
     enum Errors : Error {
         case NotImplemented
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DictWrapper<T: Hashable> : Hashable {
+open class DictWrapper<T: Hashable> : Hashable {
     var dict: [T: Double] = [T:Double]()
     
     init() {
@@ -29,11 +29,11 @@ class DictWrapper<T: Hashable> : Hashable {
         }
     }
     
-    static func == (lhs: DictWrapper<T>, rhs: DictWrapper<T>) -> Bool {
+    public static func == (lhs: DictWrapper<T>, rhs: DictWrapper<T>) -> Bool {
         return lhs.dict == rhs.dict
     }
         
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(dict)
     }
 

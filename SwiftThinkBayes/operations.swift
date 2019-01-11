@@ -16,7 +16,7 @@ import Foundation
 
  - returns: numerical sum
 */
-func randomSum<T: Numeric>(_ dists: [Cdf<T>]) throws -> T? {
+public func randomSum<T: Numeric>(_ dists: [Cdf<T>]) throws -> T? {
     var total: T? = nil
     
     for dist in dists {
@@ -39,7 +39,7 @@ func randomSum<T: Numeric>(_ dists: [Cdf<T>]) throws -> T? {
 
  - returns: new Pmf of sums
 */
-func sampleSum<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
+public func sampleSum<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
     // Return an empty PMF if no distributions were passed in
     if dists.count == 0 {
         return Pmf<T>()
@@ -69,7 +69,7 @@ func sampleSum<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
  
  - returns: numerical maximum
  */
-func randomMax<T: Numeric & Comparable>(_ dists: [Cdf<T>]) throws -> T? {
+public func randomMax<T: Numeric & Comparable>(_ dists: [Cdf<T>]) throws -> T? {
     var max: T? = nil
     
     for dist in dists {
@@ -96,7 +96,7 @@ func randomMax<T: Numeric & Comparable>(_ dists: [Cdf<T>]) throws -> T? {
  
  - returns: new Pmf of maximums
  */
-func sampleMax<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
+public func sampleMax<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
     // Return an empty PMF if no distributions were passed in
     if dists.count == 0 {
         return Pmf<T>()
@@ -125,7 +125,7 @@ func sampleMax<T: Numeric>(_ dists: [Cdf<T>], _ n: Int) throws -> Pmf<T> {
 
  - Returns: Pmf object.
 */
-func makeMixture<T: Comparable & Hashable>(_ metapmf: Pmf<Pmf<T>>) -> Pmf<T> {
+public func makeMixture<T: Comparable & Hashable>(_ metapmf: Pmf<Pmf<T>>) -> Pmf<T> {
     let mix = Pmf<T>()
 
     for (pmf, weight) in metapmf.items() {

@@ -8,20 +8,20 @@
 
 import Foundation
 
-class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
+open class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
     enum Errors : Error {
         case UnimplementedMethod
     }
     
-    override init() {
+    public override init() {
         super.init()
     }
     
-    init(hypos: [HypoType]) {
+    public init(hypos: [HypoType]) {
         super.init(keys: hypos)
     }
 
-    init(hypos: [HypoType], probs: [Double]) {
+    public init(hypos: [HypoType], probs: [Double]) {
         super.init(keys: hypos, values: probs)
     }
 
@@ -35,7 +35,7 @@ class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
      - Returns: the normalizing constant
     */
     @discardableResult
-    func update(data: DataType) throws -> Double {
+    public func update(data: DataType) throws -> Double {
         for hypo in keys() {
             let like = try likelihood(data: data, hypo: hypo)
             mult(key: hypo, factor: like)
@@ -58,7 +58,7 @@ class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
      - Returns: the normalizing constant
      */
     @discardableResult
-    func updateSet(dataset: [DataType]) throws -> Double {
+    public func updateSet(dataset: [DataType]) throws -> Double {
         for data in dataset {
             for hypo in keys() {
                 let like = try likelihood(data: data, hypo: hypo)
@@ -75,15 +75,18 @@ class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
        - hypo: some representation of the hypothesis
        - data: some representation of the data
     */
-    func likelihood(data: DataType, hypo: HypoType) throws -> Double {
+    open func likelihood(data: DataType, hypo: HypoType) throws -> Double {
         throw Errors.UnimplementedMethod
     }
     
     /**
      Prints the hypotheses and their probabilities
      */
-    func print() {
-        for (hypo, prob) in dict {
+    public func print() {
+        let sortedHypos = dict.keys.sorted()
+        
+        for hypo in sortedHypos {
+            let prob = dict[hypo]!
             Swift.print("\(hypo): \(prob)")
         }
     }

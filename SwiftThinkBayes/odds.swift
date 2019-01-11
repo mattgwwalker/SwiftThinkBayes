@@ -22,7 +22,7 @@ import Foundation
 
  - Returns: odds
 */
-func odds(_ p: Double) -> Double {
+public func odds(_ p: Double) -> Double {
     if p == 1 {
         return Double.infinity
     }
@@ -40,7 +40,7 @@ func odds(_ p: Double) -> Double {
 
  - Returns: probability
 */
-func probability(_ o: Double) -> Double {
+public func probability(_ o: Double) -> Double {
     return o / (o + 1)
 }
 
@@ -54,6 +54,6 @@ func probability(_ o: Double) -> Double {
     - yes: odds in favour
     - no: odds against
 */
-func probability2(yes: Double, no: Double) -> Double {
+public func probability2(yes: Double, no: Double) -> Double {
     return yes / (yes + no)
 }

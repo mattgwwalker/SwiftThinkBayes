@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Pmf<T: Hashable>: DictWrapper<T> {
+open class Pmf<T: Hashable>: DictWrapper<T> {
     enum Errors : Error {
         case TotalProbabilityZero
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Cdf<T: Comparable & Hashable> {
+public class Cdf<T: Comparable & Hashable> {
     enum Errors : Error {
         case ProbabilityNotInRange
         case NoValues
