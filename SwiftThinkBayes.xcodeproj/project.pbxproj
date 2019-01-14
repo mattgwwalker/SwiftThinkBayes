@@ -15,6 +15,9 @@
 		341A0A7621C872D400E583B2 /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7521C872D400E583B2 /* odds.swift */; };
 		341A0A7821C873E400E583B2 /* Chapter5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7721C873E400E583B2 /* Chapter5Tests.swift */; };
 		341A0A7A21C9B91600E583B2 /* operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7921C9B91600E583B2 /* operations.swift */; };
+		3428216621E9620100296852 /* SwiftStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3428216521E9620100296852 /* SwiftStats.framework */; };
+		3428216921E9636100296852 /* SwiftStats.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3428216821E9636100296852 /* SwiftStats.framework.dSYM */; };
+		3428216B21E9672400296852 /* TestSwiftStatsAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3428216A21E9672400296852 /* TestSwiftStatsAvailability.swift */; };
 		3432444321B5147D00D3B99C /* SwiftThinkBayes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */; };
 		3432444821B5147D00D3B99C /* Chapter2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432444721B5147D00D3B99C /* Chapter2Tests.swift */; };
 		3432445421B5161600D3B99C /* Pmf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432445321B5161600D3B99C /* Pmf.swift */; };
@@ -35,6 +38,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3428216721E9633200296852 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				3428216921E9636100296852 /* SwiftStats.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		341232B921C1C21900CB89DF /* Chapter3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter3Tests.swift; sourceTree = "<group>"; };
 		341232BB21C202FA00CB89DF /* Cdf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cdf.swift; sourceTree = "<group>"; };
@@ -46,6 +62,9 @@
 		341A0A7921C9B91600E583B2 /* operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operations.swift; sourceTree = "<group>"; };
 		3428216121E85B9800296852 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3428216221E95F9B00296852 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
+		3428216521E9620100296852 /* SwiftStats.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftStats.framework; path = Carthage/Build/Mac/SwiftStats.framework; sourceTree = "<group>"; };
+		3428216821E9636100296852 /* SwiftStats.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftStats.framework.dSYM; path = Carthage/Build/Mac/SwiftStats.framework.dSYM; sourceTree = "<group>"; };
+		3428216A21E9672400296852 /* TestSwiftStatsAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSwiftStatsAvailability.swift; sourceTree = "<group>"; };
 		3432443921B5147C00D3B99C /* SwiftThinkBayes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftThinkBayes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3432443D21B5147C00D3B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3432444221B5147D00D3B99C /* SwiftThinkBayesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftThinkBayesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3428216621E9620100296852 /* SwiftStats.framework in Frameworks */,
 				3432444321B5147D00D3B99C /* SwiftThinkBayes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,15 +100,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3428216421E9620100296852 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3428216521E9620100296852 /* SwiftStats.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3432442F21B5147C00D3B99C = {
 			isa = PBXGroup;
 			children = (
+				3428216821E9636100296852 /* SwiftStats.framework.dSYM */,
 				3428216221E95F9B00296852 /* Cartfile */,
 				3428216121E85B9800296852 /* MyPlayground.playground */,
 				34AECE1E21B6612C007D42E4 /* ThinkBayes Code */,
 				3432443B21B5147C00D3B99C /* SwiftThinkBayes */,
 				3432444621B5147D00D3B99C /* SwiftThinkBayesTests */,
 				3432443A21B5147C00D3B99C /* Products */,
+				3428216421E9620100296852 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +158,7 @@
 				341232B921C1C21900CB89DF /* Chapter3Tests.swift */,
 				341232C121C225A500CB89DF /* Chapter4Tests.swift */,
 				341A0A7721C873E400E583B2 /* Chapter5Tests.swift */,
+				3428216A21E9672400296852 /* TestSwiftStatsAvailability.swift */,
 			);
 			path = SwiftThinkBayesTests;
 			sourceTree = "<group>";
@@ -179,6 +210,7 @@
 				3432443E21B5147D00D3B99C /* Sources */,
 				3432443F21B5147D00D3B99C /* Frameworks */,
 				3432444021B5147D00D3B99C /* Resources */,
+				3428216721E9633200296852 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -268,6 +300,7 @@
 				341232C221C225A500CB89DF /* Chapter4Tests.swift in Sources */,
 				3432444821B5147D00D3B99C /* Chapter2Tests.swift in Sources */,
 				344473DC21B5CDEC0095FA6B /* DictWrapperTests.swift in Sources */,
+				3428216B21E9672400296852 /* TestSwiftStatsAvailability.swift in Sources */,
 				341232C021C2102300CB89DF /* CdfTests.swift in Sources */,
 				344473E021B5CF000095FA6B /* PmfTests.swift in Sources */,
 				341232BA21C1C21900CB89DF /* Chapter3Tests.swift in Sources */,
@@ -474,11 +507,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 62KLMYWD79;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftThinkBayesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
+					"@loader_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattgwwalker.SwiftThinkBayesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -493,11 +532,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 62KLMYWD79;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftThinkBayesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
+					"@loader_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattgwwalker.SwiftThinkBayesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
