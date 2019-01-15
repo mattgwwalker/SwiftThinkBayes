@@ -1,6 +1,18 @@
 import Cocoa
 import SwiftThinkBayes
 
+print("Starting Playground")
+
+print("Trying binary search")
+
+let sortedData = [0,1,2,3,4,5,6,7,8,9]
+let binarySearchResult = binarySearch(sortedData, key: 3)
+
+
+print("binary search result:", binarySearchResult)
+
+
+/*
 // From Chapter 3 of Think Bayes
 // *****************************
 
@@ -33,6 +45,11 @@ for roll in [6, 8, 7, 7, 5, 4] {
 print("\nAfter rolling six more times:")
 suite.print()
 
+// Play
+// ****
+
+let gaussianPdf = SwiftThinkBayes.GaussianPdf(mu: 0.0, sigma: 1.0)
+print(gaussianPdf.density(0))
 
 
 
@@ -61,3 +78,4 @@ let data = [3.89, 2.50, 3.78, 4.37, 3.15, 3.66, 3.89, 3.14, 3.05, 4.21,
 
 // Using a Bayesian approach, you might try the following:
 
+*/

@@ -24,7 +24,7 @@ open class Pmf<T: Hashable>: DictWrapper<T> {
      - Throws: `Errors.TotalProbabilityZero` is thrown if, before normalization, the sum of all the probabilities is zero
      */
     @discardableResult
-    func normalize(fraction: Double = 1.0) throws -> Double {
+    public func normalize(fraction: Double = 1.0) throws -> Double {
         let sum = total()
         
         if sum == 0 {
@@ -44,7 +44,7 @@ open class Pmf<T: Hashable>: DictWrapper<T> {
     /**
      Returns the value with the highest probability.
      */
-    func mode() -> T? {
+    public func mode() -> T? {
         var max : Double? = nil
         var maxKey : T? = nil
         
@@ -58,7 +58,7 @@ open class Pmf<T: Hashable>: DictWrapper<T> {
         return maxKey
     }
     
-    func maximumLikelihood() -> T? {
+    public func maximumLikelihood() -> T? {
         return mode()
     }
     
