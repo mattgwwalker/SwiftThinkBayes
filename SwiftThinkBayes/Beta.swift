@@ -24,7 +24,7 @@ public class Beta {
     /**
      Initializes a Beta distribution.
      */
-    init(alpha: Double = 1, beta: Double = 1) {
+    public init(alpha: Double = 1, beta: Double = 1) {
         self.alpha = alpha
         self.beta = beta
     }
@@ -35,7 +35,7 @@ public class Beta {
      - Parameters:
      - data: pair of int (heads, tails)
      */
-    func update(data: (heads: Double, tails: Double)) {
+    public func update(data: (heads: Double, tails: Double)) {
         alpha += data.heads
         beta += data.tails
     }
@@ -43,7 +43,7 @@ public class Beta {
     /**
      Computes the mean of this distribution.
      */
-    func mean() -> Double {
+    public func mean() -> Double {
         return alpha / (alpha + beta)
     }
 
@@ -51,7 +51,7 @@ public class Beta {
     /**
      Evaluates the PDF at x.
      */
-    func evalPdf(_ x: Double) -> Double {
+    public func evalPdf(_ x: Double) -> Double {
         return pow(x, alpha - 1) * pow(1 - x, beta - 1)
     }
 
@@ -67,7 +67,7 @@ public class Beta {
      and x=1.  In that case we evaluate the CDF and compute
      differences.
      */
-    func makePmf(steps: Int = 100) throws -> Pmf<Double> {
+    public func makePmf(steps: Int = 100) throws -> Pmf<Double> {
         if alpha < 1 || beta < 1 {
             // TODO: Implement this (see chapter 4.5)
             throw Errors.NotImplemented

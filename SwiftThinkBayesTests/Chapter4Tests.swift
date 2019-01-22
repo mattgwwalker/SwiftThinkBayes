@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import SwiftThinkBayes
+//@testable
+import SwiftThinkBayes
 
 class Chapter4Tests: XCTestCase {
     let epsilon = 10e-7
