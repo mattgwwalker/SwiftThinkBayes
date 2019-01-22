@@ -7,7 +7,6 @@
 //
 
 import XCTest
-//@testable
 import SwiftThinkBayes
 
 class Chapter4Tests: XCTestCase {
