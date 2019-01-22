@@ -99,7 +99,7 @@ open class DictWrapper<T: Hashable> : Hashable {
      
      - ToDo: A better implementation would return an array of labelled tuples.
     */
-    func items() -> [T:Double] {
+    public func items() -> [T:Double] {
         return dict
     }
     

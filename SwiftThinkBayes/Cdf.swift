@@ -25,7 +25,7 @@ public class Cdf<T: Comparable & Hashable> {
      - xs: sequence of values
      - ps: sequence of probabilities, where the last value should be 1.0
      */
-    init(xs: [T], ps: [Double]) {
+    public init(xs: [T], ps: [Double]) {
         self.xs = xs
         self.ps = ps
     }
@@ -39,7 +39,7 @@ public class Cdf<T: Comparable & Hashable> {
     
      - Returns: Pmf object
      */
-    func makePmf() -> Pmf<T> {
+    public func makePmf() -> Pmf<T> {
         let pmf = Pmf<T>()
         var prev = 0.0
         for i in 0 ..< ps.count {
@@ -56,7 +56,7 @@ public class Cdf<T: Comparable & Hashable> {
      - Parameters:
      - p: Proportion between 0 and 1, inclusive.
      */
-    func value(_ p: Double) throws -> T {
+    public func value(_ p: Double) throws -> T {
         if p<0 || p>1 { throw Errors.ProbabilityNotInRange }
         
         if xs.isEmpty { throw Errors.NoValues }
@@ -76,7 +76,7 @@ public class Cdf<T: Comparable & Hashable> {
      - Parameters:
      - p: number in the range [0, 100]
      */
-    func percentile(percentage: Double) throws -> T {
+    public func percentile(percentage: Double) throws -> T {
         return try value(percentage / 100.0)
     }
     
@@ -91,7 +91,7 @@ public class Cdf<T: Comparable & Hashable> {
     
      - Returns: tuple of two floats, low and high
     */
-    func credibleInterval(percentage: Double) throws -> (low: T, high: T) {
+    public func credibleInterval(percentage: Double) throws -> (low: T, high: T) {
         let prob = (1.0 - percentage / 100.0) / 2.0
         let interval = (low: try self.value(prob),
                         high: try self.value(1 - prob))
@@ -102,12 +102,12 @@ public class Cdf<T: Comparable & Hashable> {
     /**
      Chooses a random value from this distribution.
      */
-    func random() throws -> T {
+    public func random() throws -> T {
         return try value(Double.random(in: 0...1))
     }
     
     
-    func max(_ k: Int) -> Cdf<T> {
+    public func max(_ k: Int) -> Cdf<T> {
         var new_ps : [Double] = []
         for p in ps {
             new_ps.append(pow(p, Double(k)))

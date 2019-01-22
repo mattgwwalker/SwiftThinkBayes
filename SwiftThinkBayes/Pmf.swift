@@ -79,7 +79,7 @@ extension Pmf where T: Comparable {
      
      - Returns: value from the Pmf
      */
-    func percentile(percentage: Double) -> T? {
+    public func percentile(percentage: Double) -> T? {
         // TODO: Should check that percentage is within range and that
         // the dict is not empty.
         let p = percentage / 100
@@ -94,7 +94,7 @@ extension Pmf where T: Comparable {
         return nil
     }
     
-    func median() -> T? {
+    public func median() -> T? {
         return percentile(percentage: 50)
     }
 
@@ -102,7 +102,7 @@ extension Pmf where T: Comparable {
     /**
      Makes a cumulative distribution function (CDF)
      */
-    func makeCdf() -> Cdf<T> {
+    public func makeCdf() -> Cdf<T> {
         var runsum : Double = 0.0
         var xs : [T] = []
         var ps : [Double] = []
@@ -123,7 +123,7 @@ extension Pmf where T: Comparable {
 extension Pmf where T: BinaryInteger {
     /*** Computes the mean of a PMF.
      */
-    func mean() -> Double {
+    public func mean() -> Double {
         var mu = 0.0
         for (x, p) in dict {
             mu += p * Double(x)
@@ -131,7 +131,7 @@ extension Pmf where T: BinaryInteger {
         return mu
     }
     
-    func add(_ other: Pmf<T>) -> Pmf<T> {
+    public func add(_ other: Pmf<T>) -> Pmf<T> {
         let pmf = Pmf<T>()
         for (v1, p1) in dict {
             for (v2, p2) in other.dict {
@@ -142,11 +142,11 @@ extension Pmf where T: BinaryInteger {
         return pmf
     }
     
-    static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
+    public static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
         return left.add(right)
     }
     
-    func max(_ other: Pmf<T>) -> Pmf<T> {
+    public func max(_ other: Pmf<T>) -> Pmf<T> {
         let pmf = Pmf<T>()
         for (v1, p1) in dict {
             for (v2, p2) in other.dict {
@@ -163,7 +163,7 @@ extension Pmf where T: BinaryInteger {
 extension Pmf where T: BinaryFloatingPoint {
     /*** Computes the mean of a PMF.
      */
-    func mean() -> Double {
+    public func mean() -> Double {
         var mu = 0.0
         for (x, p) in dict {
             mu += p * Double(x)
@@ -171,7 +171,7 @@ extension Pmf where T: BinaryFloatingPoint {
         return mu
     }
     
-    func add(_ other: Pmf<T>) -> Pmf<T> {
+    public func add(_ other: Pmf<T>) -> Pmf<T> {
         let pmf = Pmf<T>()
         for (v1, p1) in dict {
             for (v2, p2) in other.dict {
@@ -182,11 +182,11 @@ extension Pmf where T: BinaryFloatingPoint {
         return pmf
     }
     
-    static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
+    public static func +(left: Pmf<T>, right: Pmf<T>) -> Pmf<T> {
         return left.add(right)
     }
     
-    func max(_ other: Pmf<T>) -> Pmf<T> {
+    public func max(_ other: Pmf<T>) -> Pmf<T> {
         let pmf = Pmf<T>()
         for (v1, p1) in dict {
             for (v2, p2) in other.dict {
