@@ -9,19 +9,20 @@
 import Foundation
 
 open class DictWrapper<T: Hashable> : Hashable {
-    var dict: [T: Double] = [T:Double]()
+    // TODO: Dict shouldn't be public; set up accessor methods
+    public var dict: [T: Double] = [T:Double]()
     
-    init() {
+    public init() {
         // Do nothing
     }
     
-    init(keys: [T]) {
+    public init(keys: [T]) {
         for key in keys {
             set(key:key, value: 1)
         }
     }
 
-    init(keys: [T], values: [Double]) {
+    public init(keys: [T], values: [Double]) {
         precondition(keys.count == values.count)
         
         for index in 0 ... keys.count-1 {
@@ -41,7 +42,7 @@ open class DictWrapper<T: Hashable> : Hashable {
     /**
      Sets the freq/prob associated with the given key.
      */
-    func set(key: T, value: Double) {
+    public func set(key: T, value: Double) {
         dict[key] = value
     }
     
@@ -49,7 +50,7 @@ open class DictWrapper<T: Hashable> : Hashable {
     /**
      Gets the probability associated with the given key.  If the key isn't found, the value `defaultValue` is returned.
      */
-    func prob(_ key: T, defaultValue: Double = 0) -> Double {
+    public func prob(_ key: T, defaultValue: Double = 0) -> Double {
         guard let value = dict[key] else {
             return defaultValue
         }
@@ -71,7 +72,7 @@ open class DictWrapper<T: Hashable> : Hashable {
     /**
      Scales the freq/prob associated with the given key by the specified factor.
      */
-    func mult(key: T, factor: Double) {
+    public func mult(key: T, factor: Double) {
         guard let value = dict[key] else {
             return
         }
@@ -82,7 +83,7 @@ open class DictWrapper<T: Hashable> : Hashable {
     /**
      Returns the total of the frequencies/probabilities in the dict.
      */
-    func total() -> Double {
+    public func total() -> Double {
         var total: Double = 0.0
         
         for (key,value) in dict {
@@ -106,7 +107,7 @@ open class DictWrapper<T: Hashable> : Hashable {
      Returns the keys of the dictionary.  Why-oh-why is this method called
      "values" in the original ThinkBayes?
     */
-    func keys() -> Dictionary<T, Double>.Keys {
+    public func keys() -> Dictionary<T, Double>.Keys {
         return dict.keys
     }
 }
