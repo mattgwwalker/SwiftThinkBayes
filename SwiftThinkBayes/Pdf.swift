@@ -41,3 +41,26 @@ public class GaussianPdf : Pdf {
         return distribution.pdf(x)
     }
 }
+
+public class EstimatedPdf : Pdf {
+    let kde: SwiftStats.KernelDensityEstimation
+    
+    /**
+     Creates an EstimatedPdf or returns nil if there is insufficient data in
+     `sample`, such that SwiftStats.KernelDensityEstimation returns nil.
+     */
+    public init?(sample: [Double]) {
+        guard let kdeGuarded = SwiftStats.KernelDensityEstimation(sample, bandwidth: nil) else {
+            return nil
+        }
+        kde = kdeGuarded
+    }
+    
+    /**
+     Returns the density at the given point, `x`, of the kernel density
+     estimator.
+     */
+    public func density(_ x: Double) -> Double {
+        return kde.evaluate(x)
+    }
+}

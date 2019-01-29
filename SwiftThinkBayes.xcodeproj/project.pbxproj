@@ -15,6 +15,8 @@
 		341A0A7621C872D400E583B2 /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7521C872D400E583B2 /* odds.swift */; };
 		341A0A7821C873E400E583B2 /* Chapter5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7721C873E400E583B2 /* Chapter5Tests.swift */; };
 		341A0A7A21C9B91600E583B2 /* operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A0A7921C9B91600E583B2 /* operations.swift */; };
+		341A732F2200014800D7C429 /* showcases.2012.csv in Resources */ = {isa = PBXBuildFile; fileRef = 341A732D2200014700D7C429 /* showcases.2012.csv */; };
+		341A73302200014800D7C429 /* showcases.2011.csv in Resources */ = {isa = PBXBuildFile; fileRef = 341A732E2200014800D7C429 /* showcases.2011.csv */; };
 		3428216621E9620100296852 /* SwiftStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3428216521E9620100296852 /* SwiftStats.framework */; };
 		3428216921E9636100296852 /* SwiftStats.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3428216821E9636100296852 /* SwiftStats.framework.dSYM */; };
 		3428216B21E9672400296852 /* TestSwiftStatsAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3428216A21E9672400296852 /* TestSwiftStatsAvailability.swift */; };
@@ -29,6 +31,10 @@
 		346457C921ED82C300414E68 /* PdfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346457C821ED82C300414E68 /* PdfTests.swift */; };
 		3491580221C8544900D80D03 /* Beta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491580121C8544900D80D03 /* Beta.swift */; };
 		34AECE2221B67678007D42E4 /* Suite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AECE2121B67678007D42E4 /* Suite.swift */; };
+		34DFFF3921FD7A82002406CE /* CSVImporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DFFF3821FD7A82002406CE /* CSVImporter.framework */; };
+		34DFFF3B21FD7A96002406CE /* HandySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DFFF3A21FD7A96002406CE /* HandySwift.framework */; };
+		34E3CDF621FD4BC000B3B0B6 /* Chapter6Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E3CDF521FD4BC000B3B0B6 /* Chapter6Tests.swift */; };
+		34E3CDFA21FD543D00B3B0B6 /* ReadFileFromBundleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E3CDF921FD543D00B3B0B6 /* ReadFileFromBundleTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +69,8 @@
 		341A0A7521C872D400E583B2 /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		341A0A7721C873E400E583B2 /* Chapter5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter5Tests.swift; sourceTree = "<group>"; };
 		341A0A7921C9B91600E583B2 /* operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operations.swift; sourceTree = "<group>"; };
+		341A732D2200014700D7C429 /* showcases.2012.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = showcases.2012.csv; sourceTree = "<group>"; };
+		341A732E2200014800D7C429 /* showcases.2011.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = showcases.2011.csv; sourceTree = "<group>"; };
 		3428216221E95F9B00296852 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		3428216521E9620100296852 /* SwiftStats.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftStats.framework; path = Carthage/Build/Mac/SwiftStats.framework; sourceTree = "<group>"; };
 		3428216821E9636100296852 /* SwiftStats.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftStats.framework.dSYM; path = Carthage/Build/Mac/SwiftStats.framework.dSYM; sourceTree = "<group>"; };
@@ -83,6 +91,10 @@
 		34AECE1F21B661CE007D42E4 /* thinkbayes.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes.py; sourceTree = "<group>"; };
 		34AECE2021B661DE007D42E4 /* thinkbayes2.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = thinkbayes2.py; sourceTree = "<group>"; };
 		34AECE2121B67678007D42E4 /* Suite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suite.swift; sourceTree = "<group>"; };
+		34DFFF3821FD7A82002406CE /* CSVImporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSVImporter.framework; path = Carthage/Build/Mac/CSVImporter.framework; sourceTree = "<group>"; };
+		34DFFF3A21FD7A96002406CE /* HandySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandySwift.framework; path = Carthage/Build/Mac/HandySwift.framework; sourceTree = "<group>"; };
+		34E3CDF521FD4BC000B3B0B6 /* Chapter6Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter6Tests.swift; sourceTree = "<group>"; };
+		34E3CDF921FD543D00B3B0B6 /* ReadFileFromBundleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFileFromBundleTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34DFFF3B21FD7A96002406CE /* HandySwift.framework in Frameworks */,
+				34DFFF3921FD7A82002406CE /* CSVImporter.framework in Frameworks */,
 				3428216621E9620100296852 /* SwiftStats.framework in Frameworks */,
 				3432444321B5147D00D3B99C /* SwiftThinkBayes.framework in Frameworks */,
 			);
@@ -109,6 +123,8 @@
 		3428216421E9620100296852 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34DFFF3A21FD7A96002406CE /* HandySwift.framework */,
+				34DFFF3821FD7A82002406CE /* CSVImporter.framework */,
 				3428216521E9620100296852 /* SwiftStats.framework */,
 			);
 			name = Frameworks;
@@ -157,7 +173,9 @@
 		3432444621B5147D00D3B99C /* SwiftThinkBayesTests */ = {
 			isa = PBXGroup;
 			children = (
+				34CFE61E21FECAEA005B42F5 /* Data */,
 				3432444921B5147D00D3B99C /* Info.plist */,
+				3428216A21E9672400296852 /* TestSwiftStatsAvailability.swift */,
 				344473DB21B5CDEC0095FA6B /* DictWrapperTests.swift */,
 				344473DF21B5CF000095FA6B /* PmfTests.swift */,
 				341232BF21C2102300CB89DF /* CdfTests.swift */,
@@ -166,7 +184,8 @@
 				341232B921C1C21900CB89DF /* Chapter3Tests.swift */,
 				341232C121C225A500CB89DF /* Chapter4Tests.swift */,
 				341A0A7721C873E400E583B2 /* Chapter5Tests.swift */,
-				3428216A21E9672400296852 /* TestSwiftStatsAvailability.swift */,
+				34E3CDF521FD4BC000B3B0B6 /* Chapter6Tests.swift */,
+				34E3CDF921FD543D00B3B0B6 /* ReadFileFromBundleTest.swift */,
 			);
 			path = SwiftThinkBayesTests;
 			sourceTree = "<group>";
@@ -178,6 +197,15 @@
 				34AECE2021B661DE007D42E4 /* thinkbayes2.py */,
 			);
 			path = "ThinkBayes Code";
+			sourceTree = "<group>";
+		};
+		34CFE61E21FECAEA005B42F5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				341A732E2200014800D7C429 /* showcases.2011.csv */,
+				341A732D2200014700D7C429 /* showcases.2012.csv */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +307,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				341A73302200014800D7C429 /* showcases.2011.csv in Resources */,
+				341A732F2200014800D7C429 /* showcases.2012.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +343,9 @@
 				3428216B21E9672400296852 /* TestSwiftStatsAvailability.swift in Sources */,
 				341232C021C2102300CB89DF /* CdfTests.swift in Sources */,
 				344473E021B5CF000095FA6B /* PmfTests.swift in Sources */,
+				34E3CDF621FD4BC000B3B0B6 /* Chapter6Tests.swift in Sources */,
 				341232BA21C1C21900CB89DF /* Chapter3Tests.swift in Sources */,
+				34E3CDFA21FD543D00B3B0B6 /* ReadFileFromBundleTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

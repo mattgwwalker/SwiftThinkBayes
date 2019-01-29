@@ -64,7 +64,7 @@ open class DictWrapper<T: Hashable> : Hashable {
         - x: number value
         - by: how much to increment by
      */
-    func incr(_ key:T, by term: Double = 1) {
+    public func incr(_ key:T, by term: Double = 1) {
         dict[key] = prob(key) + term
     }
     
@@ -110,5 +110,19 @@ open class DictWrapper<T: Hashable> : Hashable {
     public func keys() -> Dictionary<T, Double>.Keys {
         return dict.keys
     }
+    
 }
 
+extension DictWrapper where T: Comparable {
+    /**
+     Prints the dictionary's key and associated values.
+     */
+    public func print() {
+        let sortedKeys = dict.keys.sorted()
+        
+        for key in sortedKeys {
+            let value = dict[key]!
+            Swift.print("\(key): \(value)")
+        }
+    }
+}

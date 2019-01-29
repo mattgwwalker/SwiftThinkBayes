@@ -78,16 +78,4 @@ open class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
     open func likelihood(data: DataType, hypo: HypoType) throws -> Double {
         throw Errors.UnimplementedMethod
     }
-    
-    /**
-     Prints the hypotheses and their probabilities
-     */
-    public func print() {
-        let sortedHypos = dict.keys.sorted()
-        
-        for hypo in sortedHypos {
-            let prob = dict[hypo]!
-            Swift.print("\(hypo): \(prob)")
-        }
-    }
 }
