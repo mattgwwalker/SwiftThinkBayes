@@ -10,6 +10,27 @@ import XCTest
 import SwiftThinkBayes
 import CSVImporter
 
+func -(lhs: [Double], rhs: [Double]) -> [Double] {
+    return operateOnTwoVectors(lhs, rhs, operation: -)
+}
+
+func operateOnTwoVectors<T>(_ lhs: [T], _ rhs:[T], operation: (_ lhs: T, _ rhs:T) -> T) -> [T] {
+    let len = max(lhs.count, rhs.count)
+    
+    var results = [T]()
+    
+    for i in stride(from:0, to:len, by:1) {
+        let lhsIndex = i % lhs.count
+        let rhsIndex = i % rhs.count
+        
+        results.append(operation(lhs[lhsIndex], rhs[rhsIndex]))
+    }
+    
+    return results
+}
+
+
+
 class Chapter6Tests: XCTestCase {
     // These tests have only medium fidelity to the results obtained with
     // Python.  This stems from the implementations of kernel density
@@ -18,7 +39,7 @@ class Chapter6Tests: XCTestCase {
     // the results are quite similar.
     let epsilon = 10e-4
 
-    func extractShowcaseFromRow(_ row: [String]) -> [Double] {
+    func extractDataFromRow(_ row: [String]) -> [Double] {
         var result = [Double]()
         
         for i in 1 ..< row.count {
@@ -26,7 +47,7 @@ class Chapter6Tests: XCTestCase {
                 result.append(asDouble)
             }
             else {
-                print("Failed to convert \(row[i]) to Int")
+                print("Failed to convert \(row[i]) to Double")
             }
         }
         
@@ -34,35 +55,54 @@ class Chapter6Tests: XCTestCase {
     }
     
     func readDataFromFile(path: String) -> (showcase1: [Double],
-                                            showcase2: [Double]) {
+                                            showcase2: [Double],
+                                            bid1: [Double],
+                                            bid2: [Double]) {
         let importer = CSVImporter<[String]>(path: path)
         
         let importedRecords = importer.importRecords{$0}
         
         var showcase1 = [Double]()
         var showcase2 = [Double]()
+        var bid1 = [Double]()
+        var bid2 = [Double]()
+
         for row in importedRecords {
             if row[0] == "Showcase 1" {
-                showcase1 = extractShowcaseFromRow(row)
+                showcase1 = extractDataFromRow(row)
             }
             else if row[0] == "Showcase 2" {
-                showcase2 = extractShowcaseFromRow(row)
+                showcase2 = extractDataFromRow(row)
+            }
+            else if row[0] == "Bid 1" {
+                bid1 = extractDataFromRow(row)
+            }
+            else if row[0] == "Bid 2" {
+                bid2 = extractDataFromRow(row)
             }
         }
 
-        return (showcase1: showcase1, showcase2: showcase2)
+        return (showcase1: showcase1,
+                showcase2: showcase2,
+                bid1: bid1,
+                bid2: bid2)
     }
     
-    func readData() -> (showcase1: [Double], showcase2: [Double]) {
+    func readData() -> (showcase1: [Double],
+                        showcase2: [Double],
+                        bid1: [Double],
+                        bid2: [Double]) {
         let bundle = Bundle(for: type(of: self))
         let path1 = bundle.path(forResource: "showcases.2011", ofType: "csv")!
-        let (showcase1A, showcase2A) = readDataFromFile(path: path1)
+        let (showcase1A, showcase2A, bid1A, bid2A) = readDataFromFile(path: path1)
         
         let path2 = bundle.path(forResource: "showcases.2012", ofType: "csv")!
-        let (showcase1B, showcase2B) = readDataFromFile(path: path2)
+        let (showcase1B, showcase2B, bid1B, bid2B) = readDataFromFile(path: path2)
         
         return (showcase1: showcase1A+showcase1B,
-                showcase2: showcase2A+showcase2B)
+                showcase2: showcase2A+showcase2B,
+                bid1: bid1A+bid1B,
+                bid2: bid2A+bid2B)
     }
     
     func seq(from: Double, through: Double, length: Double) -> [Double] {
@@ -78,6 +118,7 @@ class Chapter6Tests: XCTestCase {
         return result
     }
     
+    
     func testEstimatedPdf() throws {
         // From ThinkBayes price.py
         // Showcase 1:
@@ -89,7 +130,8 @@ class Chapter6Tests: XCTestCase {
         // $60000.0 -> 0.0005766869073060268
 
         
-        let (showcase1, showcase2) = readData()
+        // From section 6.4 of Think Bayes
+        let (showcase1, showcase2, bid1, bid2) = readData()
         
         let pdf1 = EstimatedPdf(sample: showcase1)
 
@@ -104,5 +146,23 @@ class Chapter6Tests: XCTestCase {
         
         XCTAssert( abs(pmf2!.prob(30000) - 0.03836928577546672) < epsilon)
         XCTAssert( abs(pmf2!.prob(60000) - 0.0005766869073060268) < epsilon)
+        
+        // From section 6.5 of Think Bayes
+        // "The first contestant overbids 25% of the time"
+        let diff1 = showcase1 - bid1
+        let overbid1 = diff1.map {$0 < 0 ? 1.0 : 0.0}
+        let sum1 = overbid1.reduce(0, +)
+        let mean1 = sum1 / Double(diff1.count)
+        XCTAssert( abs(mean1 - 0.25) < 0.5)
+        
+        // "The second contestant overbids 29% of the time"
+        let diff2 = showcase2 - bid2
+        let overbid2 = diff2.map {$0 < 0 ? 1.0 : 0.0}
+        let sum2 = overbid2.reduce(0, +)
+        let mean2 = sum2 / Double(diff2.count)
+        XCTAssert( abs(mean2 - 0.29) < 0.5)
+        
     }
+    
+    
 }
