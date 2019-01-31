@@ -31,6 +31,28 @@ public class Cdf<T: Comparable & Hashable> {
     }
     
     
+    // Replaces Pmf<T>.makeCdf()
+    public convenience init(pmf: Pmf<T>) {
+        var runsum : Double = 0.0
+        var xs : [T] = []
+        var ps : [Double] = []
+        
+        let sum = pmf.total()
+        
+        for (key, count) in pmf.dict.sorted(by: { $0.key < $1.key }) {
+            runsum += count
+            xs.append(key)
+            ps.append(runsum / sum)
+        }
+        
+        self.init(xs: xs, ps: ps)
+    }
+    
+    public convenience init(list: [T]) {
+        let pmf = Pmf<T>(list: list)
+        self.init(pmf: pmf)
+    }
+
     /**
      Makes a normalized Pmf from a Cdf object.
     

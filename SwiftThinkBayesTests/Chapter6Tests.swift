@@ -9,6 +9,7 @@
 import XCTest
 import SwiftThinkBayes
 import CSVImporter
+import SwiftStats
 
 func -(lhs: [Double], rhs: [Double]) -> [Double] {
     return operateOnTwoVectors(lhs, rhs, operation: -)
@@ -164,5 +165,51 @@ class Chapter6Tests: XCTestCase {
         
     }
     
+    class Player {
+        let pdfPrice : EstimatedPdf
+        let cdfDiff: Cdf<Double>
+        let pdfError: GaussianPdf
+        
+        // Can return nil if there are insufficient prices to form a kernel
+        // density estimation
+        init?(prices: [Double], bids: [Double]) {
+            let diffs = prices - bids
+            
+            guard let guardedPdfPrice = EstimatedPdf(sample: prices) else {
+                return nil
+            }
+            self.pdfPrice = guardedPdfPrice
+            self.cdfDiff = Cdf(list: diffs)
+            
+            let mu = 0.0
+            guard let sigma = SwiftStats.Common.sd(diffs) else {
+                return nil
+            }
+            self.pdfError = GaussianPdf(mu: mu, sigma: sigma)
+        }
+        
+        func errorDensity(_ error: Double) -> Double {
+            return pdfError.density(error)
+        }
+    }
     
+    class Price : Suite<Double, Double> {
+        let player: Player
+        
+        init(pmf: Pmf<Double>, player: Player) {
+            self.player = player
+            super.init(prior: pmf)
+        }
+        
+        override func likelihood(data: Double, hypo: Double) throws -> Double {
+            let price = hypo
+            let guess = data
+            
+            let error = price - guess
+            let like = player.errorDensity(error)
+            
+            return like
+        }
+        
+    }
 }

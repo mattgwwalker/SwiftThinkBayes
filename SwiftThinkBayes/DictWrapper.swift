@@ -30,6 +30,16 @@ open class DictWrapper<T: Hashable> : Hashable {
         }
     }
     
+    public init(list: [T]) {
+        for x in list {
+            incr(x)
+        }
+    }
+    
+    public init(dictWrapper: DictWrapper<T>) {
+        self.dict = dictWrapper.dict // Deep copy as Dictionaries are structs
+    }
+    
     public static func == (lhs: DictWrapper<T>, rhs: DictWrapper<T>) -> Bool {
         return lhs.dict == rhs.dict
     }

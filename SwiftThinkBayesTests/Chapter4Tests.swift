@@ -41,7 +41,7 @@ class Chapter4Tests: XCTestCase {
         XCTAssert(abs(suite.mean() - 55.95) < 0.01)
         XCTAssert(suite.median() == 56)
 
-        let cdf = suite.makeCdf()
+        let cdf = Cdf(pmf: suite)
         let credibleInterval = try cdf.credibleInterval(percentage: 90)
         XCTAssert(credibleInterval.low  ==  51)
         XCTAssert(credibleInterval.high ==  61)
@@ -67,7 +67,7 @@ class Chapter4Tests: XCTestCase {
         }
         
         XCTAssert(triangleSuite.median() == 56)
-        let triangleCdf = triangleSuite.makeCdf()
+        let triangleCdf = Cdf(pmf: triangleSuite)
         let triangleCredibleInterval = try triangleCdf.credibleInterval(percentage: 90)
         XCTAssert(triangleCredibleInterval.low  ==  51)
         XCTAssert(triangleCredibleInterval.high ==  61)
@@ -84,7 +84,7 @@ class Chapter4Tests: XCTestCase {
         XCTAssert(abs(suite.mean() - 55.95) < 0.01)
         XCTAssert(suite.median() == 56)
         
-        let cdf2 = suite.makeCdf()
+        let cdf2 = Cdf(pmf: suite)
         let credibleInterval2 = try cdf2.credibleInterval(percentage: 90)
         XCTAssert(credibleInterval2.low  ==  51)
         XCTAssert(credibleInterval2.high ==  61)
@@ -107,7 +107,7 @@ class Chapter4Tests: XCTestCase {
         XCTAssert(abs(suite3.mean() - 55.95) < 0.01)
         XCTAssert(suite3.median() == 56)
         
-        let cdf3 = suite3.makeCdf()
+        let cdf3 = Cdf(pmf: suite3)
         let credibleInterval3 = try cdf3.credibleInterval(percentage: 90)
         XCTAssert(credibleInterval3.low  ==  51)
         XCTAssert(credibleInterval3.high ==  61)

@@ -134,7 +134,7 @@ class Chapter3Tests: XCTestCase {
         // Section 3.6
         // ***********
         
-        let cdf = suite2000.makeCdf()
+        let cdf = Cdf(pmf: suite2000)
         
         XCTAssert(try cdf.percentile(percentage: 5)  == 91)
         XCTAssert(try cdf.percentile(percentage: 95) == 243)

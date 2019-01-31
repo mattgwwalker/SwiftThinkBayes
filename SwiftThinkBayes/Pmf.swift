@@ -99,24 +99,7 @@ extension Pmf where T: Comparable {
     }
 
     
-    /**
-     Makes a cumulative distribution function (CDF)
-     */
-    public func makeCdf() -> Cdf<T> {
-        var runsum : Double = 0.0
-        var xs : [T] = []
-        var ps : [Double] = []
-        
-        let sum = total()
-        
-        for (key, count) in dict.sorted(by: { $0.key < $1.key }) {
-            runsum += count
-            xs.append(key)
-            ps.append(runsum / sum)
-        }
-        
-        return Cdf<T>(xs: xs, ps:ps)
-    }
+
 }
 
 

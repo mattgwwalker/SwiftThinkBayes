@@ -44,7 +44,7 @@ class Chapter5Tests: XCTestCase {
     func testAddends() throws {
         let d6 = try Die(sides: 6)
         
-        let d6_cdf = d6.makeCdf()
+        let d6_cdf = Cdf(pmf: d6)
         let dice = [d6_cdf, d6_cdf, d6_cdf]
 
         let three = try sampleSum(dice, 1000)
@@ -60,7 +60,7 @@ class Chapter5Tests: XCTestCase {
     func testMaxima() throws {
         // Create a six-sided die
         let d6 = try Die(sides: 6)
-        let d6_cdf = d6.makeCdf()
+        let d6_cdf = Cdf(pmf: d6)
 
         // Simulation:
         // ***********
@@ -68,7 +68,7 @@ class Chapter5Tests: XCTestCase {
         // Roll three six-sided dice
         let dice = [d6_cdf, d6_cdf, d6_cdf]
         let three = try sampleSum(dice, 1000)
-        let three_cdf = three.makeCdf()
+        let three_cdf = Cdf(pmf: three)
         
         // Find the maximum of six rolls of three six-sided dice (one roll for
         // each of the six character attributes).
@@ -90,7 +90,7 @@ class Chapter5Tests: XCTestCase {
         
         // Enumerate the probabilities for rolling three six-sided dice
         let three_exact = d6 + d6 + d6
-        let three_exact_cdf = three_exact.makeCdf()
+        let three_exact_cdf = Cdf(pmf: three_exact)
         
         // Enumerate the probabilities for the maximum of six times rolling
         // three six-sided dice

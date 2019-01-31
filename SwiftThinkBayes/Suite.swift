@@ -24,6 +24,10 @@ open class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
     public init(hypos: [HypoType], probs: [Double]) {
         super.init(keys: hypos, values: probs)
     }
+    
+    public init(prior: Pmf<HypoType>) {
+        super.init(dictWrapper: prior)
+    }
 
     
     /**
