@@ -364,6 +364,8 @@ class Chapter6Tests: XCTestCase {
 
         XCTAssert(abs(bid1 - 21000) < 0.5)
         XCTAssert(abs(bid2 - 31500) < 0.5)
+        XCTAssert(abs(gain1 - 16700) < 200)
+        XCTAssert(abs(gain2 - 19400) < 50)
     }
     
 }
