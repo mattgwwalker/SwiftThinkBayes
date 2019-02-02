@@ -37,6 +37,8 @@ public func binarySearch<T: Comparable>(_ a: [T], key: T) -> Int? {
     }
     
     // Modification by Matthew to allow non-exact key searches.
+    // FIXME: Can this just return lowerbound, without checking for equality
+    // with lower bound?
     if lowerBound == upperBound {
         return lowerBound
     }

@@ -25,7 +25,8 @@ open class Suite<DataType, HypoType: Hashable & Comparable>: Pmf<HypoType> {
         super.init(keys: hypos, values: probs)
     }
     
-    public init(prior: Pmf<HypoType>) {
+    /* Copy constructor for any DictWrappers, including Pmf's and Suite's. */
+    public init(prior: DictWrapper<HypoType>) {
         super.init(dictWrapper: prior)
     }
 

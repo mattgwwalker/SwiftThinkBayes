@@ -71,6 +71,24 @@ public class Cdf<T: Comparable & Hashable> {
         return pmf
     }
     
+    /**
+     Returns CDF(x), the probability that corresponds to value x.
+    
+     - Parameters:
+       - x: number
+    */
+    public func prob(_ x: T) -> Double? {
+        if x < xs[0] {
+            return 0.0
+        }
+        guard let index = binarySearch(xs, key: x) else {
+            return nil
+        }
+        
+        let p = ps[index - 1]
+        return p
+    }
+    
     
     /**
      Returns InverseCDF(p), the value that corresponds to probability p.

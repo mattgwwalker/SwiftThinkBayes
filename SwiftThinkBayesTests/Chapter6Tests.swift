@@ -172,6 +172,10 @@ class Chapter6Tests: XCTestCase {
         let cdfDiff: Cdf<Double>
         let pdfError: GaussianPdf
         
+        var guess: Double? = nil
+        var prior: Price? = nil
+        var posterior: Price? = nil
+        
         // Can return nil if there are insufficient prices to form a kernel
         // density estimation
         init?(prices: [Double], bids: [Double]) {
@@ -202,13 +206,35 @@ class Chapter6Tests: XCTestCase {
             return pmf
         }
         
-        func makeBeliefs(guess: Double) throws -> Price {
+        func makeBeliefs(guess: Double) throws {
+            self.guess = guess
             let pmf = try pmfPrice()
-            let prior = Price(pmf: pmf, player: self)
-            let posterior = prior
-            try posterior.update(data: guess)
+            prior = Price(pmf: pmf, player: self)
+            posterior = Price(source: prior!)
+            try posterior!.update(data: guess)
+        }
+        
+        func probOverbid() -> Double {
+            return cdfDiff.prob(-1)!
+        }
+        
+        func probWorseThan(_ diff: Double) -> Double {
+            return 1 - cdfDiff.prob(diff)!
+        }
+        
+        func optimalBid(guess: Double, opponent: Player) throws -> (bid: Double, gain: Double) {
+            try makeBeliefs(guess: guess)
+            let calc = GainCalculator(player: self, opponent: opponent)
+            let (bids, gains) = calc.expectedGains()
             
-            return posterior
+            var maxIndex: Int = 0
+            for i in 0..<gains.count {
+                if gains[i] > gains[maxIndex] {
+                    maxIndex = i
+                }
+            }
+            
+            return (bid: bids[maxIndex], gain: gains[maxIndex])
         }
     }
     
@@ -219,6 +245,14 @@ class Chapter6Tests: XCTestCase {
             self.player = player
             super.init(prior: pmf)
         }
+        
+        /* Copy constructor */
+        init(source: Price) {
+            self.player = source.player // We're still referencing the same player
+            super.init(prior: source)
+        }
+        
+
         
         override func likelihood(data: Double, hypo: Double) throws -> Double {
             let price = hypo
@@ -244,10 +278,92 @@ class Chapter6Tests: XCTestCase {
 
         let player = Player(prices: showcases1, bids: bids1)!
         
-        let result = try player.makeBeliefs(guess: 20000)
+        try player.makeBeliefs(guess: 20000)
 
-        let mean = result.mean()
+        let mean = player.posterior!.mean()
 
         XCTAssert(abs(mean - 25096) < 50)
     }
+    
+    class GainCalculator {
+        let player: Player
+        let opponent: Player
+        
+        init(player: Player, opponent: Player) {
+            self.player = player
+            self.opponent = opponent
+        }
+        
+        func expectedGains(low: Double = 0.0, high: Double = 75000.0, n: Double = 101.0) -> (bids: [Double], gains: [Double]){
+            let bids = seq(from: low, through: high, length: n)
+
+            var gains = [Double]()
+            for bid in bids {
+                gains.append(expectedGain(bid))
+            }
+            
+            return (bids: bids, gains: gains)
+        }
+        
+        func expectedGain(_ bid: Double) -> Double {
+            let suite = player.posterior!
+            var total = 0.0
+            for (price, prob) in suite.items() {
+                total += prob * gain(bid, price)
+            }
+            return total
+        }
+        
+        func gain(_ bid: Double, _ price: Double) -> Double {
+            if bid > price {
+                return 0
+            }
+            
+            let diff = price - bid
+            let prob = probWin(diff)
+            
+            if diff <= 250 {
+                return 2 * price * prob
+            }
+            else {
+                return price * prob
+            }
+        }
+        
+        func probWin(_ diff: Double) -> Double{
+            let prob = (opponent.probOverbid() +
+                        opponent.probWorseThan(diff))
+            return prob
+        }
+    }
+    
+    func testOptimalBidding() throws {
+        /*
+         From section 6.8 of Think Bayes
+         "For player 1 the optimal bid is $21,000, yielding an expected return
+         of almost $16,700."
+         "For player 2 the optimal bid is $31,500, yielding an expected return
+         of almost $19,400."
+         However, again, because of differences between the two automatic
+         bandwidth selection algorithms for the two implementations of KDE, our
+         results do not perfectly match those from Python.  (Our results do give
+         the same optimal bids, but the expected values are $16,547 and $19,368
+         respectively.)
+         */
+        let (showcases1, showcases2, bids1, bids2) = readData()
+        
+        let player1 = Player(prices: showcases1, bids: bids1)!
+        let player2 = Player(prices: showcases2, bids: bids2)!
+        
+        try player1.makeBeliefs(guess: 20_000)
+        try player2.makeBeliefs(guess: 40_000)
+
+        let (bid1, gain1) = try player1.optimalBid(guess: 20_000, opponent: player2)
+        
+        let (bid2, gain2) = try player2.optimalBid(guess: 40_000, opponent: player1)
+
+        XCTAssert(abs(bid1 - 21000) < 0.5)
+        XCTAssert(abs(bid2 - 31500) < 0.5)
+    }
+    
 }
