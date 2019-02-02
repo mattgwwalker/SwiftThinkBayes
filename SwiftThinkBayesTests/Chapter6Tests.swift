@@ -11,6 +11,21 @@ import SwiftThinkBayes
 import CSVImporter
 import SwiftStats
 
+
+func seq(from: Double, through: Double, length: Double) -> [Double] {
+    let range = through - from
+    let stepSize = range / (length-1)
+    
+    var result = [Double]()
+    
+    for i in stride(from: from, through:through, by:stepSize) {
+        result.append(i)
+    }
+    
+    return result
+}
+
+
 func -(lhs: [Double], rhs: [Double]) -> [Double] {
     return operateOnTwoVectors(lhs, rhs, operation: -)
 }
@@ -106,20 +121,7 @@ class Chapter6Tests: XCTestCase {
                 bid2: bid2A+bid2B)
     }
     
-    func seq(from: Double, through: Double, length: Double) -> [Double] {
-        let range = through - from
-        let stepSize = range / (length-1)
-        
-        var result = [Double]()
-        
-        for i in stride(from: from, through:through, by:stepSize) {
-            result.append(i)
-        }
-        
-        return result
-    }
-    
-    
+
     func testEstimatedPdf() throws {
         // From ThinkBayes price.py
         // Showcase 1:
@@ -191,6 +193,23 @@ class Chapter6Tests: XCTestCase {
         func errorDensity(_ error: Double) -> Double {
             return pdfError.density(error)
         }
+        
+        func pmfPrice() throws -> Pmf<Double> {
+            let n = 101
+            let xs = seq(from: 0, through: 75000, length: Double(n))
+            let pmf = try pdfPrice.makePmf(xs: xs)
+            
+            return pmf
+        }
+        
+        func makeBeliefs(guess: Double) throws -> Price {
+            let pmf = try pmfPrice()
+            let prior = Price(pmf: pmf, player: self)
+            let posterior = prior
+            try posterior.update(data: guess)
+            
+            return posterior
+        }
     }
     
     class Price : Suite<Double, Double> {
@@ -210,6 +229,25 @@ class Chapter6Tests: XCTestCase {
             
             return like
         }
+    }
+    
+    func testUpdate() throws {
+        /*
+         From section 6.7 of Think Bayes
+         "The mean of the posterior is somewhere in between: $25,096".
+         However, because of differences between the two automatic bandwidth
+         selection algorithms for the two implementations of KDE, our results
+         do not perfectly match those from Python.  (Our results give a mean
+         of $25,063.)
+         */
+        let (showcases1, _, bids1, _) = readData()
+
+        let player = Player(prices: showcases1, bids: bids1)!
         
+        let result = try player.makeBeliefs(guess: 20000)
+
+        let mean = result.mean()
+
+        XCTAssert(abs(mean - 25096) < 50)
     }
 }
